@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posters & Motion — JVNCNTNG</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.project-hero {
+  height: 56vh; min-height: 380px;
+  padding-top: 64px;
+  position: relative; overflow: hidden;
+  background: #0a0a0a;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding-left: 48px; padding-right: 48px; padding-bottom: 48px;
+}
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.35) grayscale(20%);
+}
+/* Placeholder when no hero image: */
+.hero-bg svg { width: 100%; height: 100%; }
+.hero-bg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.2) 60%);
+}
+.hero-cat {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+  position: relative; z-index: 2;
+  opacity: 0; animation: up .7s .3s forwards;
+}
+.hero-cat::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(60px, 10vw, 130px);
+  line-height: .9; color: var(--white); letter-spacing: -.01em;
+  position: relative; z-index: 2;
+  opacity: 0; animation: up .8s .5s forwards;
+}
+.hero-title em { font-style: normal; display: block; color: transparent; -webkit-text-stroke: 2px var(--white); }
+
+.info-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--line);
+}
+.info-item {
+  padding: 28px 36px;
+  border-right: 1px solid var(--line);
+}
+.info-item:last-child { border-right: none; }
+.info-label {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gray); display: block; margin-bottom: 6px;
+}
+.info-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; letter-spacing: .06em; color: var(--black); display: block;
+}
+
+.story {
+  padding: 64px 48px;
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 60px; border-bottom: 1px solid var(--line);
+}
+.story-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--gray); display: flex; align-items: center; gap: 10px; }
+.story-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gray); }
+.story h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,52px);
+  letter-spacing: .04em; margin-top: 14px; line-height: 1;
+}
+.story p { font-size: 18px; font-weight: 300; line-height: 1.8; color: #444; }
+
+.photos { padding: 48px; border-bottom: 1px solid var(--line); }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+.photo-cell {
+  aspect-ratio: 4/3; overflow: hidden;
+  position: relative; background: #111;
+}
+.photo-cell img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+.photo-cell:hover img { transform: scale(1.04); }
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.photo-placeholder svg { width: 100%; height: 100%; }
+
+.project-nav {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+}
+.pnav {
+  padding: 40px 48px; text-decoration: none;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: background .25s; border-right: 1px solid var(--line);
+}
+.pnav:last-child { border-right: none; align-items: flex-end; }
+.pnav:hover { background: #f0ede8; }
+.pnav-dir { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); }
+.pnav-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: .04em; color: var(--black); }
+
+@keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 768px) {
+  .project-hero { padding: 80px 20px 36px; height: auto; min-height: 320px; }
+  .info-bar { grid-template-columns: 1fr 1fr; }
+  .story { grid-template-columns: 1fr; padding: 48px 20px; gap: 28px; }
+  .photos { padding: 20px; }
+  .photo-grid { grid-template-columns: 1fr; }
+  .project-nav { grid-template-columns: 1fr; }
+  .pnav { padding: 32px 20px; }
+  .pnav:last-child { align-items: flex-start; border-right: none; border-top: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><img src="../images/logo.svg" alt="JVNCNTNG" class="logo-img"></a>
+  <a href="../index.html#work" class="nav-back">All Projects</a>
+</nav>
+
+<section class="project-hero">
+  <div class="hero-bg">
+    <!-- REPLACE svg with your hero image: -->
+    <!-- <img src="../images/motion-hero.jpg" alt="Posters & Motion"> -->
+    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="800" height="500" fill="#05050f"/><line x1="500" y1="-20" x2="200" y2="520" stroke="rgba(200,184,154,.3)" stroke-width="2.5"/>
+<line x1="640" y1="-20" x2="340" y2="520" stroke="rgba(200,184,154,.12)" stroke-width="1"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="80" fill="rgba(200,184,154,.5)" letter-spacing="3">1984</text><text x="50%" y="72%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.2)" letter-spacing="3">POSTERS & MOTION GRAPHICS</text></svg>
+  </div>
+  <div class="hero-bg-overlay"></div>
+  <div class="hero-cat">Poster & Motion</div>
+  <h1 class="hero-title">Posters & Motion</h1>
+</section>
+
+<div class="info-bar">
+  <div class="info-item reveal"><span class="info-label">Category</span><span class="info-value">Poster & Motion</span></div>
+  <div class="info-item reveal d1"><span class="info-label">Year</span><span class="info-value">2023–2025</span></div>
+  <div class="info-item reveal d2"><span class="info-label">Tools</span><span class="info-value">Illustrator / After Effects</span></div>
+  <div class="info-item reveal d3"><span class="info-label">Client</span><span class="info-value">Self-Initiated</span></div>
+</div>
+
+<section class="story">
+  <div>
+    <div class="story-label reveal">Background</div>
+    <h2 class="reveal d1">About the Project</h2>
+  </div>
+  <p class="reveal d1">Poster designs and motion graphics spanning print and digital. '1984' uses negative space and diagonal tension. 'Twilight Wishes' animates sunset to starlight. 'Joyland' brings cinematic quality to motion design.</p>
+</section>
+
+<div class="photos">
+  <div class="photo-grid">
+    <div class="photo-cell reveal">
+      <!-- <img src="../images/motion-1.jpg" alt="Posters & Motion — image 1"> -->
+      <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#05050f"/><line x1="250" y1="0" x2="80" y2="300" stroke="rgba(200,184,154,.25)" stroke-width="2"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">1984</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">POSTER</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Book advertisement</text></svg></div>
+    </div>
+    <div class="photo-cell reveal d1">
+      <!-- <img src="../images/motion-2.jpg" alt="Posters & Motion — image 2"> -->
+      <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#0a0a08"/><line x1="220" y1="0" x2="60" y2="300" stroke="rgba(200,184,154,.2)" stroke-width="1.5"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">MOTION</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">GRAPHICS</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Title sequences</text></svg></div>
+    </div>
+    <div class="photo-cell reveal d2">
+      <!-- <img src="../images/motion-3.jpg" alt="Posters & Motion — image 3"> -->
+      <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#080808"/><line x1="240" y1="0" x2="60" y2="300" stroke="rgba(200,184,154,.15)" stroke-width="1"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">JEEPNEY</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">SINAGE</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Filipino culture poster</text></svg></div>
+    </div>
+  </div>
+</div>
+
+<div class="project-nav">
+  <a href="pathmates.html" class="pnav reveal">
+    <span class="pnav-dir">← Previous</span>
+    <span class="pnav-name">PathMates</span>
+  </a>
+  <a href="travii.html" class="pnav reveal d1">
+    <span class="pnav-dir">Next →</span>
+    <span class="pnav-name">Travii Series</span>
+  </a>
+</div>
+
+<footer>
+  <div class="footer-logo">JVNCNTNG</div>
+  <div class="footer-copy">© 2026 J INOC · All rights reserved</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
