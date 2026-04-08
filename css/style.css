@@ -21,22 +21,22 @@ body {
 
 /* ── CURSOR ── */
 .cursor {
-  width: 8px; height: 8px;
-  background: var(--black);
+  
+  background: var(--accent);
   border-radius: 50%;
   position: fixed; top: 0; left: 0;
   pointer-events: none; z-index: 9999;
-  transition: transform .15s; mix-blend-mode: difference;
+  transition: transform .15s ease, width .2s, height .2s;
+  box-shadow: 0 0 0 2px rgba(200,184,154,.3);
 }
 .cursor-ring {
-  width: 36px; height: 36px;
-  border: 1px solid var(--black);
+  width: 38px; height: 38px;
+  border: 1.5px solid var(--black);
   border-radius: 50%;
   position: fixed; top: 0; left: 0;
   pointer-events: none; z-index: 9998;
-  transition: all .12s; mix-blend-mode: difference;
+  transition: all .13s ease;
 }
-body:hover .cursor { opacity: 1; }
 
 /* ── NAV ── */
 nav {
@@ -120,4 +120,118 @@ footer {
 /* Invert logo on dark backgrounds if needed */
 .logo-img.invert {
   filter: invert(1);
+}
+
+/* ── LIGHTBOX ── */
+.photo-cell {
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+.photo-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .5s ease, filter .4s;
+}
+.photo-cell:hover img {
+  transform: scale(1.04);
+}
+
+/* Zoom hint on hover */
+.photo-cell::after {
+  content: 'View';
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--white);
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(10,10,10,0);
+  transition: background .35s;
+  pointer-events: none;
+}
+.photo-cell:hover::after {
+  background: rgba(10,10,10,.35);
+}
+
+/* Lightbox overlay */
+.lb-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(5,5,5,.96);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease;
+  backdrop-filter: blur(6px);
+}
+.lb-overlay.open {
+  opacity: 1; pointer-events: all;
+}
+
+.lb-img-wrap {
+  position: relative;
+  max-width: 90vw; max-height: 88vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.lb-img {
+  max-width: 90vw; max-height: 88vh;
+  object-fit: contain; display: block;
+  transform: scale(.94);
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+  border-radius: 2px;
+}
+.lb-overlay.open .lb-img {
+  transform: scale(1);
+}
+
+/* Close button */
+.lb-close {
+  position: fixed; top: 28px; right: 32px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  background: none; border: 1px solid rgba(255,255,255,.15);
+  padding: 10px 18px; cursor: none;
+  transition: color .25s, border-color .25s;
+  z-index: 9001;
+}
+.lb-close:hover { color: var(--white); border-color: rgba(255,255,255,.4); }
+
+/* Prev / Next arrows */
+.lb-prev, .lb-next {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px;
+  border: 1px solid rgba(255,255,255,.15); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.5); font-size: 18px;
+  background: none; cursor: none;
+  transition: color .25s, border-color .25s, background .25s;
+  z-index: 9001;
+}
+.lb-prev { left: 28px; }
+.lb-next { right: 28px; }
+.lb-prev:hover, .lb-next:hover {
+  color: var(--white);
+  border-color: var(--accent);
+  background: rgba(200,184,154,.08);
+}
+.lb-prev.hidden, .lb-next.hidden { opacity: 0; pointer-events: none; }
+
+/* Counter */
+.lb-counter {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: .2em;
+  color: rgba(255,255,255,.3);
+  z-index: 9001;
+}
+
+/* Caption */
+.lb-caption {
+  position: fixed; bottom: 52px; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,.4);
+  text-align: center; white-space: nowrap;
+  z-index: 9001;
 }
