@@ -216,6 +216,8 @@
   .gallery-item[data-cat="landscape"]:nth-child(3n+1) { grid-column: span 2; }
   .gallery-item[data-cat="portrait"] { aspect-ratio: 4/3; }
   .empty-state { grid-column: span 2; }
+  .nav-links { display: none; }
+  .hamburger { display: flex !important; }
 }
 </style>
 </head>
@@ -234,7 +236,26 @@
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html#work" class="drawer-link">Work <span>01</span></a></li>
+    <li><a href="photography.html" class="drawer-link">Photography <span>02</span></a></li>
+    <li><a href="index.html#about" class="drawer-link">About <span>03</span></a></li>
+    <li><a href="index.html#experience" class="drawer-link">Experience <span>04</span></a></li>
+    <li><a href="index.html#contact" class="drawer-link">Contact <span>05</span></a></li>
+  </ul>
+  <div class="mobile-drawer-footer">
+    <a href="mailto:jovincentinoc@gmail.com">Email</a>
+    <a href="https://instagram.com/jvncntng" target="_blank">Instagram</a>
+    <a href="https://www.jvncntng.com" target="_blank">Website</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="photo-hero">

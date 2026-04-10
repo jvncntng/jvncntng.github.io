@@ -159,3 +159,40 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
     if (diff < 0 && current > 0) show(current - 1);
   });
 })();
+
+// ── MOBILE NAV ───────────────────────────────────────────────────────────────
+(function initMobileNav() {
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('mobileDrawer');
+  if (!hamburger || !drawer) return;
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  // Close when a link is tapped
+  drawer.querySelectorAll('.drawer-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on swipe right
+  let touchStartX = 0;
+  drawer.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  drawer.addEventListener('touchend', e => {
+    if (e.changedTouches[0].clientX - touchStartX > 60) closeMenu();
+  });
+})();

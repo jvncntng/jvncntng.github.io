@@ -129,9 +129,33 @@
 <div class="cursor-ring" id="ring"></div>
 
 <nav>
-  <a href="../index.html" class="nav-logo"><img src="../images/logo.svg" alt="JVNCNTNG" class="logo-img"></a>
-  <a href="../index.html#work" class="nav-back">All Projects</a>
+  <a href="../index.html" class="nav-logo">
+    <img src="../images/logo.svg" alt="JVNCNTNG" class="logo-img">
+  </a>
+  <div class="nav-desktop">
+    <a href="../index.html#work" class="nav-back">← All Projects</a>
+    <a href="../photography.html" class="nav-back">Photography</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul class="mobile-nav-links">
+    <li><a href="../index.html#work" class="drawer-link">Work <span>01</span></a></li>
+    <li><a href="../photography.html" class="drawer-link">Photography <span>02</span></a></li>
+    <li><a href="../index.html#about" class="drawer-link">About <span>03</span></a></li>
+    <li><a href="../index.html#experience" class="drawer-link">Experience <span>04</span></a></li>
+    <li><a href="../index.html#contact" class="drawer-link">Contact <span>05</span></a></li>
+  </ul>
+  <div class="mobile-drawer-footer">
+    <a href="mailto:jovincentinoc@gmail.com">Email</a>
+    <a href="https://instagram.com/jvncntng" target="_blank">Instagram</a>
+    <a href="https://www.jvncntng.com" target="_blank">Website</a>
+  </div>
+</div>
 
 <section class="project-hero">
   <div class="hero-bg">
@@ -163,16 +187,16 @@
 <div class="photos">
   <div class="photo-grid">
     <div class="photo-cell reveal">
-      <img src="../images/travii-1.png" alt="Travii Series — image 1">
-      <!-- <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#0d1020"/><line x1="260" y1="0" x2="100" y2="300" stroke="rgba(200,184,154,.3)" stroke-width="2"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">TRAVII</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">CHOCOLATE</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Packaging front</text></svg></div> -->
+      <!-- <img src="../images/travii-1.jpg" alt="Travii Series — image 1"> -->
+      <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#0d1020"/><line x1="260" y1="0" x2="100" y2="300" stroke="rgba(200,184,154,.3)" stroke-width="2"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">TRAVII</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">CHOCOLATE</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Packaging front</text></svg></div>
     </div>
     <div class="photo-cell reveal d1">
-      <img src="../images/travii-2.png" alt="Travii Series — image 2">
-     <!-- <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#150b02"/><line x1="220" y1="0" x2="60" y2="300" stroke="rgba(200,184,154,.2)" stroke-width="1.5"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">YOGURT</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">SERIES</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Milk yogurt range</text></svg></div> -->
+      <!-- <img src="../images/travii-2.jpg" alt="Travii Series — image 2"> -->
+      <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#150b02"/><line x1="220" y1="0" x2="60" y2="300" stroke="rgba(200,184,154,.2)" stroke-width="1.5"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">YOGURT</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">SERIES</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Milk yogurt range</text></svg></div>
     </div>
     <div class="photo-cell reveal d2">
-      <img src="../images/travii-3.png" alt="Travii Series — image 3">
-      <!-- <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#071018"/><line x1="280" y1="0" x2="80" y2="300" stroke="rgba(200,184,154,.25)" stroke-width="2"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">HAWAII</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">INSPIRED</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Brand concept</text></svg></div> -->
+      <!-- <img src="../images/travii-3.jpg" alt="Travii Series — image 3"> -->
+      <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#071018"/><line x1="280" y1="0" x2="80" y2="300" stroke="rgba(200,184,154,.25)" stroke-width="2"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">HAWAII</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">INSPIRED</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Brand concept</text></svg></div>
     </div>
   </div>
 </div>
