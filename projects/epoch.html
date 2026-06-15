@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" sizes="180x180" href="../images/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="../images/favicon_io/site.webmanifest">
+<link rel="shortcut icon" href="../images/favicon_io/favicon.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
 <title>Epoch AI Magazine — JVNCNTNG</title>
 <link rel="stylesheet" href="../css/style.css">
 <style>
@@ -82,14 +89,16 @@
   gap: 3px;
 }
 .photo-cell {
-  aspect-ratio: 4/3; overflow: hidden;
+  aspect-ratio: 4/3;
   position: relative; background: #111;
+  display: flex; align-items: center; justify-content: center;
 }
 .photo-cell img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform .5s ease;
+  width: 100%; height: 100%; object-fit: contain; display: block;
+  max-width: 100%; max-height: 100%;
+  transition: opacity .25s ease, transform .35s ease;
 }
-.photo-cell:hover img { transform: scale(1.04); }
+.photo-cell:hover img { transform: none; }
 .photo-placeholder {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
@@ -135,10 +144,7 @@
 
 <section class="project-hero">
   <div class="hero-bg">
-    <!-- REPLACE svg with your hero image: -->
-    <!-- <img src="../images/epoch-hero.jpg" alt="Epoch AI Magazine"> -->
-    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="800" height="500" fill="#080808"/><line x1="520" y1="-20" x2="200" y2="520" stroke="rgba(200,184,154,.3)" stroke-width="2.5"/>
-<line x1="650" y1="-20" x2="330" y2="520" stroke="rgba(200,184,154,.12)" stroke-width="1"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="80" fill="rgba(200,184,154,.5)" letter-spacing="3">EPOCH</text><text x="50%" y="72%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.2)" letter-spacing="3">AI MAGAZINE</text></svg>
+    <img src="../images/epoch-hero.png" alt="Epoch AI Magazine">
   </div>
   <div class="hero-bg-overlay"></div>
   <div class="hero-cat">Editorial Design</div>
@@ -163,16 +169,14 @@
 <div class="photos">
   <div class="photo-grid">
     <div class="photo-cell reveal">
-      <!-- <img src="../images/epoch-1.jpg" alt="Epoch AI Magazine — image 1"> -->
-      <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#080808"/><line x1="260" y1="0" x2="80" y2="300" stroke="rgba(200,184,154,.3)" stroke-width="2"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">EPOCH</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">AI</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Cover design</text></svg></div>
+      <img src="../images/epoch-hero.png" alt="Epoch AI Magazine — cover design">
     </div>
     <div class="photo-cell reveal d1">
       <!-- <img src="../images/epoch-2.jpg" alt="Epoch AI Magazine — image 2"> -->
       <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#0d0800"/><line x1="200" y1="0" x2="50" y2="300" stroke="rgba(200,184,154,.15)" stroke-width="1.5"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">MAG</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">SPREAD</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Interior layout</text></svg></div>
     </div>
     <div class="photo-cell reveal d2">
-      <!-- <img src="../images/epoch-3.jpg" alt="Epoch AI Magazine — image 3"> -->
-      <div class="photo-placeholder"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#050505"/><line x1="280" y1="0" x2="100" y2="300" stroke="rgba(200,184,154,.2)" stroke-width="1.5"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="52" fill="rgba(200,184,154,.5)" letter-spacing="3">CONCEPT</text><text x="50%" y="60%" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="rgba(200,184,154,.28)" letter-spacing="5">VISUAL</text><text x="50%" y="75%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.22)" letter-spacing="3">Editorial art</text></svg></div>
+      <img src="../images/epoch-spread/Long Draft 16.png" alt="Epoch AI Magazine — back cover spread">
     </div>
   </div>
 </div>
@@ -187,6 +191,445 @@
     <span class="pnav-name">Book & Booklet</span>
   </a>
 </div>
+
+<!-- Booklet viewer (magazine) -->
+<section class="booklet-section">
+  <div class="bk-heading reveal">
+    <div class="section-label">Booklet View</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4vw,52px);letter-spacing:.04em;margin-top:12px;line-height:1">
+      Shapes of Design
+    </h2>
+  </div>
+
+  <div class="bk-outer reveal d1">
+    <div class="bk-label-top">Use ← → keys or buttons to flip</div>
+
+    <!-- The Book -->
+    <div class="bk-book" id="bkBook">
+      <div class="bk-left"  id="bkLeft"></div>
+      <div class="bk-spine"></div>
+      <div class="bk-right" id="bkRight">
+        <div class="bk-face-front" id="bkFront"></div>
+        <div class="bk-face-back"  id="bkBack"></div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="bk-controls">
+      <button class="bk-btn" id="bkPrev">←</button>
+      <span class="bk-count" id="bkCount"></span>
+      <button class="bk-btn" id="bkNext">→</button>
+    </div>
+
+    <!-- Thumbnail strip -->
+    <div class="bk-thumbs" id="bkThumbs"></div>
+  </div>
+</section>
+
+<style>
+/* ── BOOKLET SECTION ─────────────────────────────────────── */
+.booklet-section {
+  padding: 48px 24px 60px;
+  border-top: 1px solid var(--line);
+  background: var(--black);
+}
+.bk-heading {
+  margin-bottom: 36px;
+}
+.bk-heading .section-label {
+  color: var(--accent);
+}
+.bk-heading .section-label::before {
+  background: var(--accent);
+}
+.bk-heading h2 { color: var(--white); }
+
+.bk-outer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.bk-label-top {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(200,184,154,.35);
+}
+
+/* ── BOOK ────────────────────────────────────────────────── */
+.bk-book {
+  position: relative;
+  width: 860px;
+  max-width: 98vw;
+  height: 560px;
+  perspective: 2200px;
+  filter: drop-shadow(0 28px 48px rgba(0,0,0,.75));
+}
+
+/* single-page cover view: opposite side shows a placeholder; cover image is shown with contain to avoid crop */
+
+/* Left page */
+.bk-left {
+  position: absolute;
+  left: 0; top: 0;
+  width: 50%; height: 100%;
+  border-radius: 6px 0 0 6px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: -6px 0 18px rgba(0,0,0,.7);
+}
+
+/* Spine */
+.bk-spine {
+  position: absolute;
+  left: 50%; top: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, #050505, #1a1a1a, #050505);
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* Right page — flips (improved: curl shadow, softer easing) */
+.bk-right {
+  position: absolute;
+  right: 0; top: 0;
+  width: 50%; height: 100%;
+  border-radius: 0 6px 6px 0;
+  overflow: hidden;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  box-shadow: 6px 0 20px rgba(0,0,0,.6);
+  transition: transform .9s cubic-bezier(.2,.9,.2,1), box-shadow .45s;
+  z-index: 5;
+}
+.bk-right::after {
+  /* moving shadow to emulate curl */
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.45), transparent 50%);
+  transform: translateX(-110%);
+  opacity: 0;
+  transition: transform .9s cubic-bezier(.2,.9,.2,1), opacity .6s;
+  pointer-events: none;
+  z-index: 6;
+}
+.bk-right.flip { transform: rotateY(-180deg) rotateZ(-1deg) translateX(-2%); box-shadow: 18px 6px 40px rgba(0,0,0,.6); }
+.bk-right.flip::after { transform: translateX(0); opacity: 1; }
+
+/* Page curl inner shadow */
+.bk-right::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 10px; height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,.2), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Front & back faces */
+.bk-face-front,
+.bk-face-back {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bk-face-back { transform: rotateY(180deg); }
+
+/* Page image */
+.bk-page-img {
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto;
+  object-fit: contain;
+  object-position: center;
+  background: #111;
+  display: block;
+}
+
+/* Page placeholder (shown when no image yet) */
+.bk-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+}
+.bk-placeholder-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: .08em;
+  line-height: 1;
+}
+.bk-placeholder-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .4;
+}
+
+/* Page number */
+.bk-pg-num {
+  position: absolute;
+  bottom: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .1em;
+  opacity: .35;
+}
+.bk-left .bk-pg-num  { left: 16px; color: var(--accent); }
+.bk-right .bk-pg-num { right: 16px; color: #555; }
+
+/* ── CONTROLS ────────────────────────────────────────────── */
+.bk-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.bk-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,184,154,.25);
+  background: none;
+  color: var(--accent);
+  font-size: 16px;
+  cursor: none;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .25s, border-color .25s;
+  font-family: inherit;
+}
+.bk-btn:hover {
+  background: rgba(200,184,154,.08);
+  border-color: var(--accent);
+}
+.bk-btn:disabled { opacity: .2; cursor: not-allowed; }
+.bk-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .16em;
+  color: rgba(200,184,154,.4);
+  min-width: 80px;
+  text-align: center;
+}
+
+/* ── THUMBNAILS ──────────────────────────────────────────── */
+.bk-thumbs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 680px;
+}
+.bk-thumb {
+  width: 52px; height: 34px;
+  border: 1px solid rgba(200,184,154,.15);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: none;
+  transition: border-color .2s, transform .2s;
+  background: #111;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  letter-spacing: .08em;
+  color: rgba(200,184,154,.3);
+}
+.bk-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.bk-thumb:hover  { border-color: var(--accent); transform: scaleY(1.06); }
+.bk-thumb.active { border-color: var(--accent); }
+
+/* subtle movement of the left page while turning */
+.bk-book.turning .bk-left { transform: translateX(-8px) rotateY(4deg); transition: transform .9s cubic-bezier(.2,.9,.2,1); }
+.bk-book.turning-rev .bk-left { transform: translateX(-3px) rotateY(2deg); transition: transform .45s cubic-bezier(.2,.9,.2,1); }
+.bk-book.turning .bk-right { box-shadow: 24px 8px 48px rgba(0,0,0,.7); }
+
+@media (max-width: 768px) {
+  .booklet-section { padding: 60px 20px 80px; }
+  .bk-book { height: 260px; }
+}
+</style>
+
+<script>
+(function() {
+
+  /* ═══════════════════════════════════════════════════════
+     YOUR PAGES — add as many as you want (always in pairs)
+     For real images: set src to your image path
+     Leave src: '' for placeholder text display
+     ═══════════════════════════════════════════════════════ */
+  const pages = [
+    { src: '../images/epoch-spread/Long Draft 1.png', title: '', sub: '', light: false },
+    { src: '../images/epoch-spread/Long Draft 2.png', title: '', sub: '', light: true },
+    { src: '../images/epoch-spread/Long Draft 3.png', title: '', sub: '', light: false },
+    { src: '../images/epoch-spread/Long Draft 4.png', title: '', sub: '', light: true },
+    { src: '../images/epoch-spread/Long Draft 5.png', title: '', sub: '', light: false },
+    { src: '../images/epoch-spread/Long Draft 6.png', title: '', sub: '', light: true },
+    { src: '../images/epoch-spread/Long Draft 7.png', title: '', sub: '', light: false },
+    { src: '../images/epoch-spread/Long Draft 8.png', title: '', sub: '', light: true },
+    { src: '../images/epoch-spread/Long Draft 9.png', title: '', sub: '', light: false },
+    { src: '../images/epoch-spread/Long Draft 10.png', title: '', sub: '', light: true },
+    { src: '../images/epoch-spread/Long Draft 11.png', title: '', sub: '', light: false },
+    { src: '../images/epoch-spread/Long Draft 12.png', title: '', sub: '', light: true },
+    { src: '../images/epoch-spread/Long Draft 13.png', title: '', sub: '', light: false },
+    { src: '../images/epoch-spread/Long Draft 14.png', title: '', sub: '', light: true },
+    { src: '../images/epoch-spread/Long Draft 15.png', title: '', sub: '', light: false },
+    { src: '../images/epoch-spread/Long Draft 16.png', title: '', sub: 'Back Cover', light: false },
+  ];
+  /* ═══════════════════════════════════════════════════════ */
+
+  const spreadCount = 2 + Math.floor((pages.length - 2) / 2);
+  let spread = 0;
+  let busy = false;
+
+  const bkLeft  = document.getElementById('bkLeft');
+  const bkRight = document.getElementById('bkRight');
+  const bkBook  = document.getElementById('bkBook');
+  const bkFront = document.getElementById('bkFront');
+  const bkBack  = document.getElementById('bkBack');
+  const bkPrev  = document.getElementById('bkPrev');
+  const bkNext  = document.getElementById('bkNext');
+  const bkCount = document.getElementById('bkCount');
+  const bkThumbs = document.getElementById('bkThumbs');
+
+  function buildPage(p, pgNum) {
+    if (!p) return '<div style="width:100%;height:100%;background:#111"></div>';
+    const textColor = p.light ? '#0a0a0a' : '#c8b89a';
+    const bg = p.light ? '#f5f4f0' : '#111';
+    if (p.src) {
+      return `
+        <div style="position:relative;width:100%;height:100%">
+          <img class="bk-page-img" src="${p.src}" alt="">
+          ${pgNum ? `<span class="bk-pg-num">${pgNum}</span>` : ''}
+        </div>`;
+    }
+    return `
+      <div class="bk-placeholder" style="background:${bg}">
+        <div style="opacity:.15">
+          <svg width="40" height="40" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <line x1="40" y1="0" x2="15" y2="60" stroke="${textColor}" stroke-width="1.5"/>
+            <line x1="50" y1="0" x2="25" y2="60" stroke="${textColor}" stroke-width="0.8"/>
+            <rect x="8" y="8" width="44" height="44" fill="none" stroke="${textColor}" stroke-width="0.7"/>
+          </svg>
+        </div>
+        <div class="bk-placeholder-title" style="color:${textColor}">${p.title}</div>
+        <div class="bk-placeholder-sub" style="color:${textColor}">${p.sub}</div>
+        ${pgNum ? `<span class="bk-pg-num" style="color:${p.light ? '#555' : '#c8b89a'}">${pgNum}</span>` : ''}
+      </div>`;
+  }
+
+  function getSpreadIndices(s) {
+    if (s === 0) return { left: -1, right: 0 };
+    if (s === spreadCount - 1) return { left: -1, right: pages.length - 1 };
+    const left = 1 + (s - 1) * 2;
+    return { left, right: left + 1 };
+  }
+
+  function renderSpread(s) {
+    const total = pages.length;
+    const indices = getSpreadIndices(s);
+    const placeholder = { src: '', title: '', sub: '', light: true };
+
+    bkPrev.disabled = s === 0;
+    bkNext.disabled = s === spreadCount - 1;
+
+    if (s === 0 || s === spreadCount - 1) {
+      bkLeft.innerHTML = buildPage(placeholder, '');
+      const coverPage = pages[indices.right];
+      if (coverPage && coverPage.src) {
+        bkFront.innerHTML = `
+          <div style="position:relative;width:100%;height:100%">
+            <img class="bk-page-img" src="${coverPage.src}" alt="" style="object-fit:contain; width:100%; height:100%;" />
+            <span class="bk-pg-num">${indices.right + 1}</span>
+          </div>`;
+      } else {
+        bkFront.innerHTML = buildPage(coverPage, indices.right + 1);
+      }
+      bkBack.innerHTML = '';
+      bkCount.textContent = `${indices.right + 1} / ${total}`;
+    } else {
+      const lp = pages[indices.left];
+      const rp = pages[indices.right];
+      bkLeft.innerHTML  = buildPage(lp, indices.left + 1);
+      bkFront.innerHTML = buildPage(rp, indices.right + 1);
+      bkBack.innerHTML = '';
+      bkCount.textContent = `${indices.left + 1}–${indices.right + 1} / ${total}`;
+    }
+
+    document.querySelectorAll('.bk-thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === s);
+    });
+  }
+
+  function goNext() {
+    if (busy || spread >= spreadCount - 1) return;
+    busy = true;
+    const nextS = spread + 1;
+    const nextIndices = getSpreadIndices(nextS);
+    const nLp = nextIndices.left >= 0 ? pages[nextIndices.left] : { src: '', title: '', sub: '', light: true };
+    bkBack.innerHTML = buildPage(nLp, nextIndices.left >= 0 ? nextIndices.left + 1 : '');
+    // add a turning class for subtle left-page motion and shadow
+    bkBook.classList.add('turning');
+    bkRight.classList.add('flip');
+    setTimeout(() => {
+      spread = nextS;
+      bkRight.classList.remove('flip');
+      bkBook.classList.remove('turning');
+      renderSpread(spread);
+      busy = false;
+    }, 900);
+  }
+
+  function goPrev() {
+    if (busy || spread <= 0) return;
+    busy = true;
+    // reverse-turn animation: briefly add a turning-rev class for subtle motion
+    bkBook.classList.add('turning-rev');
+    setTimeout(() => {
+      spread--;
+      renderSpread(spread);
+      setTimeout(() => { bkBook.classList.remove('turning-rev'); busy = false; }, 300);
+    }, 60);
+  }
+
+  bkNext.addEventListener('click', goNext);
+  bkPrev.addEventListener('click', goPrev);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goNext();
+    if (e.key === 'ArrowLeft')  goPrev();
+  });
+
+  // Build thumbnails
+  for (let i = 0; i < spreadCount; i++) {
+    const t = document.createElement('div');
+    t.className = 'bk-thumb' + (i === 0 ? ' active' : '');
+    if (i === 0) {
+      t.textContent = 'Cover';
+    } else if (i === spreadCount - 1) {
+      t.textContent = 'Back';
+    } else {
+      const left = 2 + (i - 1) * 2;
+      const right = left + 1;
+      t.textContent = `${left}–${right}`;
+    }
+    const idx = i;
+    t.addEventListener('click', () => { if (!busy) { spread = idx; renderSpread(spread); } });
+    bkThumbs.appendChild(t);
+  }
+
+  renderSpread(0);
+})();
+</script>
 
 <footer>
   <div class="footer-logo">JVNCNTNG</div>
