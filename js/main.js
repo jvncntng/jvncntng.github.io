@@ -196,3 +196,17 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
     if (e.changedTouches[0].clientX - touchStartX > 60) closeMenu();
   });
 })();
+
+// ── WORK TABS ──────────────────────────────────────────────────────────────
+document.querySelectorAll('.work-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.work-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    document.querySelectorAll('#tab-' + btn.dataset.tab + ' .reveal').forEach(el => {
+      el.classList.remove('visible');
+      setTimeout(() => el.classList.add('visible'), 60);
+    });
+  });
+});

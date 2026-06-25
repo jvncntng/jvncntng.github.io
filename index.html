@@ -36,7 +36,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .hero-card{position:absolute;bottom:80px;left:40px;border:1.5px solid var(--black);border-radius:12px;padding:24px 28px;background:rgba(245,244,240,.88);backdrop-filter:blur(8px);opacity:0;animation:fadeUp .8s 1.6s forwards;}
 .hero-card p{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--gray);margin-bottom:4px;}
 .hero-card h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.06em;}
-.work{padding:100px 52px;border-top:1px solid var(--line);}
+ .work{padding:100px 52px;border-top:1px solid var(--line);}
 .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:60px;}
 .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
 .section-label::before{content:'';display:block;width:32px;height:1px;background:var(--gray);}
@@ -75,8 +75,23 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .card-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.72);line-height:1.6;max-height:4.5em;overflow:hidden;margin:0;}
 .card-arrow{position:absolute;top:24px;right:24px;width:38px;height:38px;border:1px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:14px;opacity:0;transform:translateY(-6px);transition:all .3s;z-index:3;}
 .project-card:hover .card-arrow{opacity:1;transform:none;}
-.about{padding:120px 52px;display:grid;grid-template-columns:1fr 1.8fr;gap:80px;border-top:1px solid var(--line);position:relative;overflow:hidden;align-items:start;}
-.about::after{content:'ABOUT';font-family:'Bebas Neue',sans-serif;font-size:clamp(140px,20vw,280px);position:absolute;bottom:-30px;right:-10px;color:transparent;-webkit-text-stroke:1px #e8e6e1;pointer-events:none;line-height:1;z-index:0;}
+.work-tabs{display:flex;gap:2px;margin-bottom:48px;border-bottom:1px solid var(--line);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.work-tabs::-webkit-scrollbar{display:none;}
+.work-tab{display:flex;flex-direction:column;gap:4px;padding:18px 32px 20px;background:none;border:none;margin-bottom:-1px;cursor:none;text-align:left;white-space:nowrap;position:relative;}
+.work-tab::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:2px;background:var(--black);transition:width .35s ease;}
+.work-tab:hover .tab-label{color:var(--black);}
+.work-tab.active::after{width:100%;}
+.work-tab.active .tab-label{color:var(--black);}
+.tab-label{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;color:#ccc;transition:color .25s;line-height:1;}
+.tab-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:transparent;transition:color .25s;}
+.work-tab.active .tab-sub,.work-tab:hover .tab-sub{color:var(--gray);}
+.panel-intro{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:32px;flex-wrap:wrap;}
+.panel-role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);white-space:nowrap;}
+.panel-desc{font-size:16px;font-weight:300;font-style:italic;color:var(--gray);line-height:1.6;}
+.work-panel{display:none;}
+.work-panel.active{display:block;animation:panelIn .4s ease;}
+@keyframes panelIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.about{padding:120px 52px;display:grid;grid-template-columns:1fr 1.8fr;gap:80px;border-top:1px solid var(--line);position:relative;overflow:hidden;align-items:start;}.about::after{content:'ABOUT';font-family:'Bebas Neue',sans-serif;font-size:clamp(140px,20vw,280px);position:absolute;bottom:-30px;right:-10px;color:transparent;-webkit-text-stroke:1px #e8e6e1;pointer-events:none;line-height:1;z-index:0;}
 .about-photo-wrap{position:relative;z-index:1;}
 .about-photo{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:grayscale(100%);transition:filter .6s;}
 .about-photo:hover{filter:grayscale(0%);}
@@ -192,69 +207,274 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <section class="work" id="work">
   <div class="section-header">
     <div>
-      <div class="section-label reveal">Selected Projects</div>
+      <div class="section-label reveal">Selected Work</div>
       <h2 class="section-title reveal d1">Work</h2>
     </div>
     <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gray)" class="reveal">2020 — 2026</span>
   </div>
-  <div class="projects-grid">
 
-    <a href="projects/travii.html" class="project-card reveal">
-      <img class="card-img" src="images/travii-hero.png" alt="Travii Series"> 
-     <div class="card-placeholder" style="background:linear-gradient(135deg,#1a1a2e,#0f3460)">
-        <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg"><line x1="460" y1="-20" x2="180" y2="500" stroke="rgba(200,184,154,.3)" stroke-width="2"/><line x1="560" y1="-20" x2="280" y2="500" stroke="rgba(200,184,154,.14)" stroke-width="1"/><rect x="220" y="70" width="260" height="340" rx="16" fill="none" stroke="rgba(200,184,154,.4)" stroke-width="1.5"/><text x="350" y="225" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="58" fill="rgba(200,184,154,.55)" letter-spacing="3">TRAVII</text><text x="350" y="262" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="22" fill="rgba(200,184,154,.28)" letter-spacing="7">SERIES</text><path d="M 180 400 Q 280 360 350 400 Q 420 440 520 400" fill="none" stroke="rgba(200,184,154,.2)" stroke-width="1.5"/></svg>
-     
-      </div>
-      <div class="card-overlay"><div class="card-cat">Packaging Design</div><div class="card-name">Travii Series</div><div class="card-desc">Chocolate &amp; milk yogurt packaging inspired by travel and Hawaii.</div></div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-    <a href="projects/epoch.html" class="project-card reveal d1">
-      <img class="card-img" src="images/epoch-hero.png" alt="Epoch AI Magazine"> 
-      <div class="card-placeholder" style="background:linear-gradient(160deg,#080808,#1a1a1a,#2d1b0e)">
-        <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg"><line x1="270" y1="-10" x2="90" y2="390" stroke="rgba(200,184,154,.28)" stroke-width="2"/><text x="200" y="170" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="58" fill="rgba(200,184,154,.5)" letter-spacing="3">EPOCH</text><text x="200" y="208" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="26" fill="rgba(200,184,154,.22)" letter-spacing="9">AI</text><circle cx="200" cy="290" r="36" fill="none" stroke="rgba(200,184,154,.1)" stroke-width="1"/></svg>
-      </div>
-      <div class="card-overlay"><div class="card-cat">Editorial Design</div><div class="card-name">Epoch AI Magazine</div><div class="card-desc">Exploring the rise of AI through editorial design.</div></div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-    <a href="projects/book.html" class="project-card reveal">
-      <img class="card-img" src="images/book-hero.png" alt="Book & Booklet">
-      <div class="card-placeholder" style="background:linear-gradient(135deg,#1c1c1c,#2a2a2a)">
-        <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"><rect x="100" y="40" width="180" height="280" rx="4" fill="none" stroke="rgba(245,244,240,.28)" stroke-width="1.5"/><text x="190" y="185" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="22" fill="rgba(245,244,240,.5)" letter-spacing="3">MOBY</text><text x="190" y="212" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="22" fill="rgba(245,244,240,.5)" letter-spacing="3">DICK</text><path d="M 128 240 L 152 195 L 172 240" fill="none" stroke="rgba(245,244,240,.32)" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </div>
-      <div class="card-overlay"><div class="card-cat">Book Cover &amp; Booklet</div><div class="card-name">Shapes of Design</div><div class="card-desc">Publication layout and cover reimagining.</div></div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-    <a href="projects/gemini.html" class="project-card reveal d1">
-      <img class="card-img" src="images/gemini-hero.png" alt="Gemini Apparel">
-      <div class="card-placeholder" style="background:linear-gradient(135deg,#0d1117,#1a2332)">
-        <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"><line x1="148" y1="70" x2="148" y2="310" stroke="rgba(200,184,154,.72)" stroke-width="2.5" stroke-linecap="round"/><line x1="232" y1="70" x2="232" y2="310" stroke="rgba(200,184,154,.72)" stroke-width="2.5" stroke-linecap="round"/><line x1="130" y1="88" x2="166" y2="88" stroke="rgba(200,184,154,.5)" stroke-width="2" stroke-linecap="round"/><line x1="214" y1="88" x2="250" y2="88" stroke="rgba(200,184,154,.5)" stroke-width="2" stroke-linecap="round"/><line x1="130" y1="292" x2="166" y2="292" stroke="rgba(200,184,154,.5)" stroke-width="2" stroke-linecap="round"/><line x1="214" y1="292" x2="250" y2="292" stroke="rgba(200,184,154,.5)" stroke-width="2" stroke-linecap="round"/><line x1="148" y1="190" x2="232" y2="190" stroke="rgba(200,184,154,.22)" stroke-width="1.5"/><text x="190" y="348" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="rgba(200,184,154,.3)" letter-spacing="7">GEMINI</text></svg>
-      </div>
-      <div class="card-overlay"><div class="card-cat">Brand Identity</div><div class="card-name">Gemini Apparel</div><div class="card-desc">Logo &amp; identity inspired by the Gemini zodiac.</div></div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-    <a href="projects/pathmates.html" class="project-card reveal d2">
-       <img class="card-img" src="images/pathmates-hero.png" alt="PathMates">
-      <div class="card-placeholder" style="background:linear-gradient(135deg,#1a0a0a,#2d1515)">
-        <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"><path d="M 80 320 Q 190 80 300 320" fill="none" stroke="rgba(200,184,154,.45)" stroke-width="2.5" stroke-linecap="round"/><circle cx="190" cy="118" r="32" fill="none" stroke="rgba(200,184,154,.4)" stroke-width="1.5"/><circle cx="190" cy="118" r="10" fill="rgba(200,184,154,.15)"/></svg>
-      </div>
-      <div class="card-overlay"><div class="card-cat">Identity System</div><div class="card-name">PathMates</div><div class="card-desc">NGO branding for formerly incarcerated individuals.</div></div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-    <a href="projects/motion.html" class="project-card reveal d3">
-      <img class="card-img" src="images/motion-hero.png" alt="Posters & Motion">
-      <div class="card-placeholder" style="background:linear-gradient(135deg,#05050f,#1a1a2d)">
-        <svg viewBox="0 0 1200 480" xmlns="http://www.w3.org/2000/svg"><line x1="750" y1="-20" x2="300" y2="500" stroke="rgba(200,184,154,.25)" stroke-width="2.5"/><line x1="900" y1="-20" x2="450" y2="500" stroke="rgba(200,184,154,.1)" stroke-width="1.5"/><rect x="420" y="60" width="360" height="360" fill="none" stroke="rgba(200,184,154,.15)" stroke-width="1"/><text x="600" y="255" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="110" fill="rgba(200,184,154,.42)" letter-spacing="4">1984</text><text x="600" y="295" text-anchor="middle" font-family="'DM Mono',monospace" font-size="11" fill="rgba(200,184,154,.18)" letter-spacing="6">POSTER DESIGN · MOTION GRAPHICS</text></svg>
-      </div>
-      <div class="card-overlay"><div class="card-cat">Posters &amp; Motion Graphics</div><div class="card-name">Posters &amp; Motion</div><div class="card-desc">From "1984" print ads to animated title sequences and social media campaigns.</div></div>
-      <div class="card-arrow">↗</div>
-    </a>
-
+  <div class="work-tabs reveal d1">
+    <button class="work-tab active" data-tab="pcc">
+      <span class="tab-label">PCC</span>
+      <span class="tab-sub">Polynesian Cultural Center</span>
+    </button>
+    <button class="work-tab" data-tab="byuh">
+      <span class="tab-label">BYUH</span>
+      <span class="tab-sub">Library · Social Media</span>
+    </button>
+    <button class="work-tab" data-tab="urc">
+      <span class="tab-label">URC</span>
+      <span class="tab-sub">Internship</span>
+    </button>
+    <button class="work-tab" data-tab="personal">
+      <span class="tab-label">Personal</span>
+      <span class="tab-sub">School & Freelance</span>
+    </button>
   </div>
+
+  <div class="work-panels">
+
+    <div class="work-panel active" id="tab-pcc">
+      <div class="panel-intro reveal">
+        <p class="panel-role">Graphic Designer · Culinary &amp; Retail Division</p>
+        <p class="panel-desc">Branding, signage, product labelling and identity design for the Polynesian Cultural Center's retail and culinary operations.</p>
+      </div>
+      <div class="projects-grid">
+
+        <a href="projects/work/pcc-brand.html" class="project-card reveal">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#0d1020,#1a2040)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Branding</div>
+            <div class="card-name">Brand Identity</div>
+            <div class="card-desc">Visual identity system for PCC's culinary and retail division.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/pcc-brand.html" class="project-card reveal d1">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#101010,#202020)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Environmental</div>
+            <div class="card-name">Signage Design</div>
+            <div class="card-desc">Wayfinding and promotional signage across PCC's retail spaces.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/pcc-brand.html" class="project-card reveal d2">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#1a0f05,#2d1a08)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Packaging</div>
+            <div class="card-name">Product Labelling</div>
+            <div class="card-desc">Label design for PCC's food and retail product lines.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/pcc-brand.html" class="project-card reveal">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#080d16,#121e30)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Identity</div>
+            <div class="card-name">Logo Design</div>
+            <div class="card-desc">Logo marks and brand marks created for PCC's sub-brands.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/pcc-brand.html" class="project-card reveal d1">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#100808,#201010)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Print</div>
+            <div class="card-name">Marketing Collateral</div>
+            <div class="card-desc">Menus, flyers and promotional print materials.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/pcc-brand.html" class="project-card reveal d2">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#05050f,#0f0f20)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Branding</div>
+            <div class="card-name">Event Graphics</div>
+            <div class="card-desc">Visual design for PCC events and seasonal promotions.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="work-panel" id="tab-byuh">
+      <div class="panel-intro reveal">
+        <p class="panel-role">Library Outreach · Graphic Designer · Social Media Manager</p>
+        <p class="panel-desc">Social media strategy, content photography and motion graphics for BYUH's Joseph F. Smith Library outreach program.</p>
+      </div>
+      <div class="projects-grid">
+
+        <a href="projects/work/byuh.html" class="project-card reveal">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#0a1020,#10203a)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Social Media</div>
+            <div class="card-name">Instagram Campaign</div>
+            <div class="card-desc">Designed and managed Instagram campaigns for BYUH Library's outreach program.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/byuh.html" class="project-card reveal d1">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#0f0f10,#1a1a20)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Photography</div>
+            <div class="card-name">Content Photography</div>
+            <div class="card-desc">Photography for library events, campaigns and digital platforms.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/byuh.html" class="project-card reveal d2">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#0a0a1a,#15152a)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Video</div>
+            <div class="card-name">Reels &amp; Motion</div>
+            <div class="card-desc">Short-form video content and animated reels for social media.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/byuh.html" class="project-card reveal d1">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#100a0a,#201515)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Photography</div>
+            <div class="card-name">Event Coverage</div>
+            <div class="card-desc">Photo and graphic coverage of BYUH Library events and activations.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="work-panel" id="tab-urc">
+      <div class="panel-intro reveal">
+        <p class="panel-role">Graphic Designer &amp; Media Marketing Intern</p>
+        <p class="panel-desc">Video production, event photography and website management for the BYUH Undergraduate Research Conference.</p>
+      </div>
+      <div class="projects-grid">
+
+        <a href="projects/work/urc.html" class="project-card reveal">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#05050f,#0f0f20)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Motion</div>
+            <div class="card-name">Conference Video</div>
+            <div class="card-desc">Video production and editing for the annual undergraduate research conference.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/urc.html" class="project-card reveal d1">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Photography</div>
+            <div class="card-name">Event Photography</div>
+            <div class="card-desc">Official photography for URC presentations, speakers and highlights.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/urc.html" class="project-card reveal d2">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#0d1020,#1a2040)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Web</div>
+            <div class="card-name">Website Management</div>
+            <div class="card-desc">Managed and updated the URC website for event promotion and registration.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/urc.html" class="project-card reveal d1">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#100808,#201010)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Print</div>
+            <div class="card-name">Promotional Poster</div>
+            <div class="card-desc">Print and digital poster designs promoting the research conference.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="work-panel" id="tab-personal">
+      <div class="panel-intro reveal">
+        <p class="panel-role">Personal Projects &amp; School Work</p>
+        <p class="panel-desc">Self-initiated and academic projects spanning packaging, editorial, identity and motion design.</p>
+      </div>
+      <div class="projects-grid">
+
+        <a href="projects/work/travii.html" class="project-card reveal">
+          <img class="card-img" src="images/travii-hero.png" alt="Travii Series">
+          <div class="card-overlay">
+            <div class="card-cat">Packaging Design</div>
+            <div class="card-name">Travii Series</div>
+            <div class="card-desc">Chocolate &amp; milk yogurt packaging inspired by travel and Hawaii.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+        <a href="projects/work/epoch.html" class="project-card reveal d1">
+          <div class="card-placeholder" style="background:linear-gradient(160deg,#080808,#1a1a1a,#2d1b0e)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Editorial Design</div>
+            <div class="card-name">Epoch AI Magazine</div>
+            <div class="card-desc">Exploring the rise of AI through editorial design.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+<a href="projects/work/book.html" class="project-card reveal d2">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#1c1c1c,#2a2a2a)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Book Cover &amp; Booklet</div>
+            <div class="card-name">Shapes of Design</div>
+            <div class="card-desc">Publication layout and cover reimagining.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+<a href="projects/work/gemini.html" class="project-card reveal">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#0d1117,#1a2332)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Brand Identity</div>
+            <div class="card-name">Gemini Apparel</div>
+            <div class="card-desc">Logo &amp; identity inspired by the Gemini zodiac.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+<a href="projects/work/pathmates.html" class="project-card reveal d1">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#1a0a0a,#2d1515)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Identity System</div>
+            <div class="card-name">PathMates</div>
+            <div class="card-desc">NGO branding for formerly incarcerated individuals.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+<a href="projects/work/motion.html" class="project-card reveal d2">
+          <div class="card-placeholder" style="background:linear-gradient(135deg,#05050f,#1a1a2d)"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Posters &amp; Motion</div>
+            <div class="card-name">Posters &amp; Motion</div>
+            <div class="card-desc">From "1984" print ads to animated title sequences.</div>
+          </div>
+          <div class="card-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+
+  </div><!-- end .work-panels -->
 </section>
 
 <section class="about" id="about">
