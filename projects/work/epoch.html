@@ -146,6 +146,7 @@
   max-width: 98vw;
   height: 560px;
   perspective: 2200px;
+  transform-style: preserve-3d;
   filter: drop-shadow(0 28px 48px rgba(0,0,0,.75));
 }
 
@@ -160,6 +161,9 @@
   overflow: hidden;
   background: #111;
   box-shadow: -6px 0 18px rgba(0,0,0,.7);
+  transform-origin: right center;
+  transition: transform .9s cubic-bezier(.16,.84,.44,1), box-shadow .45s;
+  will-change: transform;
 }
 
 /* Spine */
@@ -182,8 +186,9 @@
   transform-origin: left center;
   transform-style: preserve-3d;
   box-shadow: 6px 0 20px rgba(0,0,0,.6);
-  transition: transform .9s cubic-bezier(.2,.9,.2,1), box-shadow .45s;
+  transition: transform .9s cubic-bezier(.16,.84,.44,1), box-shadow .45s;
   z-index: 5;
+  will-change: transform;
 }
 .bk-right::after {
   /* moving shadow to emulate curl */
@@ -196,7 +201,7 @@
   pointer-events: none;
   z-index: 6;
 }
-.bk-right.flip { transform: rotateY(-180deg) rotateZ(-1deg) translateX(-2%); box-shadow: 18px 6px 40px rgba(0,0,0,.6); }
+.bk-right.flip { transform: rotateY(-180deg) rotateZ(-2deg) translateX(-2.5%); box-shadow: 24px 10px 44px rgba(0,0,0,.72); }
 .bk-right.flip::after { transform: translateX(0); opacity: 1; }
 
 /* Page curl inner shadow */
@@ -330,8 +335,8 @@
 .bk-thumb.active { border-color: var(--accent); }
 
 /* subtle movement of the left page while turning */
-.bk-book.turning .bk-left { transform: translateX(-8px) rotateY(4deg); transition: transform .9s cubic-bezier(.2,.9,.2,1); }
-.bk-book.turning-rev .bk-left { transform: translateX(-3px) rotateY(2deg); transition: transform .45s cubic-bezier(.2,.9,.2,1); }
+.bk-book.turning .bk-left { transform: translateX(-10px) rotateY(12deg) rotateZ(-1deg); box-shadow: -12px 0 28px rgba(0,0,0,.45); }
+.bk-book.turning-rev .bk-left { transform: translateX(-4px) rotateY(6deg); box-shadow: -8px 0 18px rgba(0,0,0,.35); }
 .bk-book.turning .bk-right { box-shadow: 24px 8px 48px rgba(0,0,0,.7); }
 
 @media (max-width: 768px) {
@@ -349,22 +354,22 @@
      Leave src: '' for placeholder text display
      ═══════════════════════════════════════════════════════ */
   const pages = [
-    { src: '../images/epoch-spread/Long Draft 1.png', title: '', sub: '', light: false },
-    { src: '../images/epoch-spread/Long Draft 2.png', title: '', sub: '', light: true },
-    { src: '../images/epoch-spread/Long Draft 3.png', title: '', sub: '', light: false },
-    { src: '../images/epoch-spread/Long Draft 4.png', title: '', sub: '', light: true },
-    { src: '../images/epoch-spread/Long Draft 5.png', title: '', sub: '', light: false },
-    { src: '../images/epoch-spread/Long Draft 6.png', title: '', sub: '', light: true },
-    { src: '../images/epoch-spread/Long Draft 7.png', title: '', sub: '', light: false },
-    { src: '../images/epoch-spread/Long Draft 8.png', title: '', sub: '', light: true },
-    { src: '../images/epoch-spread/Long Draft 9.png', title: '', sub: '', light: false },
-    { src: '../images/epoch-spread/Long Draft 10.png', title: '', sub: '', light: true },
-    { src: '../images/epoch-spread/Long Draft 11.png', title: '', sub: '', light: false },
-    { src: '../images/epoch-spread/Long Draft 12.png', title: '', sub: '', light: true },
-    { src: '../images/epoch-spread/Long Draft 13.png', title: '', sub: '', light: false },
-    { src: '../images/epoch-spread/Long Draft 14.png', title: '', sub: '', light: true },
-    { src: '../images/epoch-spread/Long Draft 15.png', title: '', sub: '', light: false },
-    { src: '../images/epoch-spread/Long Draft 16.png', title: '', sub: 'Back Cover', light: false },
+    { src: '../../images/epoch-spread/Long Draft 1.png', title: '', sub: '', light: false },
+    { src: '../../images/epoch-spread/Long Draft 2.png', title: '', sub: '', light: true },
+    { src: '../../images/epoch-spread/Long Draft 3.png', title: '', sub: '', light: false },
+    { src: '../../images/epoch-spread/Long Draft 4.png', title: '', sub: '', light: true },
+    { src: '../../images/epoch-spread/Long Draft 5.png', title: '', sub: '', light: false },
+    { src: '../../images/epoch-spread/Long Draft 6.png', title: '', sub: '', light: true },
+    { src: '../../images/epoch-spread/Long Draft 7.png', title: '', sub: '', light: false },
+    { src: '../../images/epoch-spread/Long Draft 8.png', title: '', sub: '', light: true },
+    { src: '../../images/epoch-spread/Long Draft 9.png', title: '', sub: '', light: false },
+    { src: '../../images/epoch-spread/Long Draft 10.png', title: '', sub: '', light: true },
+    { src: '../../images/epoch-spread/Long Draft 11.png', title: '', sub: '', light: false },
+    { src: '../../images/epoch-spread/Long Draft 12.png', title: '', sub: '', light: true },
+    { src: '../../images/epoch-spread/Long Draft 13.png', title: '', sub: '', light: false },
+    { src: '../../images/epoch-spread/Long Draft 14.png', title: '', sub: '', light: true },
+    { src: '../../images/epoch-spread/Long Draft 15.png', title: '', sub: '', light: false },
+    { src: '../../images/epoch-spread/Long Draft 16.png', title: '', sub: 'Back Cover', light: false },
   ];
   /* ═══════════════════════════════════════════════════════ */
 
@@ -423,7 +428,7 @@
     bkPrev.disabled = s === 0;
     bkNext.disabled = s === spreadCount - 1;
 
-    if (s === 0 || s === spreadCount - 1) {
+    if (s === 0) {
       bkLeft.innerHTML = buildPage(placeholder, '');
       const coverPage = pages[indices.right];
       if (coverPage && coverPage.src) {
@@ -435,6 +440,20 @@
       } else {
         bkFront.innerHTML = buildPage(coverPage, indices.right + 1);
       }
+      bkBack.innerHTML = '';
+      bkCount.textContent = `${indices.right + 1} / ${total}`;
+    } else if (s === spreadCount - 1) {
+      const backCoverPage = pages[indices.right];
+      if (backCoverPage && backCoverPage.src) {
+        bkLeft.innerHTML = `
+          <div style="position:relative;width:100%;height:100%">
+            <img class="bk-page-img" src="${backCoverPage.src}" alt="" style="object-fit:contain; width:100%; height:100%;" />
+            <span class="bk-pg-num">${indices.right + 1}</span>
+          </div>`;
+      } else {
+        bkLeft.innerHTML = buildPage(backCoverPage, indices.right + 1);
+      }
+      bkFront.innerHTML = buildPage(placeholder, '');
       bkBack.innerHTML = '';
       bkCount.textContent = `${indices.right + 1} / ${total}`;
     } else {
@@ -478,7 +497,7 @@
     setTimeout(() => {
       spread--;
       renderSpread(spread);
-      setTimeout(() => { bkBook.classList.remove('turning-rev'); busy = false; }, 300);
+      setTimeout(() => { bkBook.classList.remove('turning-rev'); busy = false; }, 320);
     }, 60);
   }
 
