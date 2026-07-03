@@ -3,67 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon_io/favicon-16x16.png">
-<link rel="manifest" href="../../images/favicon_io/site.webmanifest">
-<link rel="shortcut icon" href="../../images/favicon_io/favicon.ico">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="theme-color" content="#ffffff">
-<title>BYUH Library Outreach — JVNCNTNG</title>
+<title>BYUH Library — JVNCNTNG</title>
 <link rel="stylesheet" href="../../css/style.css">
-
+<style>
+.project-hero {
+  min-height: 88vh; padding-top: 64px;
+  position: relative; overflow: hidden; background: var(--black);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding-left: 52px; padding-right: 52px; padding-bottom: 56px;
+}
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.35); }
+.hero-bg-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.15) 70%); }
+.hero-cat {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  position: relative; z-index: 2;
+  opacity: 0; animation: fadeUp .7s .3s forwards;
+}
+.hero-cat::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 11vw, 150px); line-height: .9;
+  color: var(--white); letter-spacing: -.01em;
+  position: relative; z-index: 2;
+  opacity: 0; animation: fadeUp .8s .5s forwards;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,.45); margin-top: 20px;
+  position: relative; z-index: 2;
+  opacity: 0; animation: fadeUp .7s .7s forwards;
+}
+.info-bar { display: grid; grid-template-columns: repeat(4,1fr); border-bottom: 1px solid var(--line); }
+.info-item { padding: 28px 40px; border-right: 1px solid var(--line); }
+.info-item:last-child { border-right: none; }
+.info-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: block; margin-bottom: 6px; }
+.info-value { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: .06em; color: var(--black); display: block; }
+.story { padding: 72px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; border-bottom: 1px solid var(--line); }
+.story-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: flex; align-items: center; gap: 12px; }
+.story-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gray); }
+.story h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 52px); letter-spacing: .04em; margin-top: 14px; line-height: 1; }
+.story p { font-size: 18px; font-weight: 300; line-height: 1.85; color: #444; }
+.photos { padding: 48px 52px 80px; }
+.photo-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
+.photo-cell { position: relative; overflow: hidden; background: #111; cursor: none; }
+.photo-cell:nth-child(1) { grid-column: span 7; aspect-ratio: 16/9; }
+.photo-cell:nth-child(2) { grid-column: span 5; aspect-ratio: 4/3; }
+.photo-cell:nth-child(3) { grid-column: span 4; aspect-ratio: 4/3; }
+.photo-cell:nth-child(4) { grid-column: span 4; aspect-ratio: 4/3; }
+.photo-cell:nth-child(5) { grid-column: span 4; aspect-ratio: 4/3; }
+.photo-cell:nth-child(6) { grid-column: span 12; aspect-ratio: 21/6; }
+.photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s ease, filter .4s; filter: grayscale(10%); }
+.photo-cell:hover img { transform: scale(1.04); filter: grayscale(0%); }
+.photo-cell::after { content: 'View'; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--white); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0); transition: background .35s; pointer-events: none; z-index: 2; }
+.photo-cell:hover::after { background: rgba(10,10,10,.38); }
+.photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 18px; background: linear-gradient(to top, rgba(0,0,0,.75), transparent); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,244,240,.6); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; z-index: 3; }
+.photo-cell:hover .photo-label { opacity: 1; transform: none; }
+.project-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.pnav { padding: 40px 52px; text-decoration: none; display: flex; flex-direction: column; gap: 8px; transition: background .25s; border-right: 1px solid var(--line); }
+.pnav:last-child { border-right: none; align-items: flex-end; }
+.pnav:hover { background: #f0ede8; }
+.pnav-dir { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); }
+.pnav-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: .04em; color: var(--black); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@media (max-width: 768px) {
+  .project-hero { padding: 80px 24px 40px; min-height: 70vh; }
+  .info-bar { grid-template-columns: 1fr 1fr; }
+  .story { grid-template-columns: 1fr; padding: 48px 24px; gap: 28px; }
+  .photos { padding: 24px; }
+  .photo-grid { grid-template-columns: 1fr; }
+  .photo-cell:nth-child(n) { grid-column: span 1; aspect-ratio: 4/3; }
+  .project-nav { grid-template-columns: 1fr; }
+  .pnav { padding: 32px 24px; }
+  .pnav:last-child { align-items: flex-start; border-right: none; border-top: 1px solid var(--line); }
+}
+</style>
 </head>
 <body>
 <div class="cursor" id="cur"></div>
 <div class="cursor-ring" id="ring"></div>
 
 <nav>
-  <a href="../../index.html" class="nav-logo"><img src="../../images/logo.svg" alt="JVNCNTNG" class="logo-img"></a>
-  <a href="../../index.html#work" class="nav-back">All Projects</a>
+  <a href="../../index.html" class="nav-logo">
+    <img src="../../images/logo.svg" alt="JVNCNTNG" class="logo-img">
+  </a>
+  <div class="nav-desktop">
+    <a href="../../index.html#work" class="nav-back">← All Work</a>
+    <a href="../../photography.html" class="nav-back">Photography</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul class="mobile-nav-links">
+    <li><a href="../../index.html#work" class="drawer-link">Work <span>01</span></a></li>
+    <li><a href="../../photography.html" class="drawer-link">Photography <span>02</span></a></li>
+    <li><a href="../../index.html#about" class="drawer-link">About <span>03</span></a></li>
+    <li><a href="../../index.html#experience" class="drawer-link">Experience <span>04</span></a></li>
+    <li><a href="../../index.html#contact" class="drawer-link">Contact <span>05</span></a></li>
+  </ul>
+  <div class="mobile-drawer-footer">
+    <a href="mailto:jovincentinoc@gmail.com">Email</a>
+    <a href="https://instagram.com/jvncntng" target="_blank">Instagram</a>
+  </div>
+</div>
 
 <section class="project-hero">
   <div class="hero-bg">
-    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="800" height="500" fill="#101218"/><line x1="520" y1="-20" x2="220" y2="520" stroke="rgba(200,184,154,.35)" stroke-width="2"/><line x1="620" y1="-20" x2="320" y2="520" stroke="rgba(200,184,154,.15)" stroke-width="1"/><text x="50%" y="48%" text-anchor="middle" dominant-baseline="middle" font-family="'Bebas Neue',sans-serif" font-size="80" fill="rgba(200,184,154,.5)" letter-spacing="3">BYUH</text><text x="50%" y="72%" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(200,184,154,.2)" letter-spacing="3">Library Outreach</text></svg>
+    <!-- <img src="../../images/byuh-hero.jpg" alt="BYUH Library"> -->
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a0a,#1a1a2a);"></div>
   </div>
   <div class="hero-bg-overlay"></div>
-  <div class="hero-cat">Social Media · Photography · Motion</div>
-  <h1 class="hero-title">BYUH Library Outreach</h1>
+  <div class="hero-cat">Social Media & Photography</div>
+  <h1 class="hero-title">BYUH Library</h1>
+  <p class="hero-sub">Library Outreach · Graphic Designer · Social Media Manager</p>
 </section>
 
 <div class="info-bar">
-  <div class="info-item reveal"><span class="info-label">Category</span><span class="info-value">Social Media</span></div>
-  <div class="info-item reveal d1"><span class="info-label">Year</span><span class="info-value">2023</span></div>
-  <div class="info-item reveal d2"><span class="info-label">Tools</span><span class="info-value">Photoshop / Premiere Pro</span></div>
-  <div class="info-item reveal d3"><span class="info-label">Client</span><span class="info-value">BYU-Hawaii Library</span></div>
+  <div class="info-item reveal"><span class="info-label">Category</span><span class="info-value">Social Media & Photography</span></div>
+  <div class="info-item reveal d1"><span class="info-label">Year</span><span class="info-value">2023 – 2024</span></div>
+  <div class="info-item reveal d2"><span class="info-label">Tools</span><span class="info-value">Photoshop · Lightroom · Premiere</span></div>
+  <div class="info-item reveal d3"><span class="info-label">Client</span><span class="info-value">BYU–Hawaii</span></div>
 </div>
 
 <section class="story">
   <div>
-    <div class="story-label reveal">Project</div>
-    <h2 class="reveal d1">Library outreach campaigns supporting events, socials, and student engagement.</h2>
+    <div class="story-label reveal">Background</div>
+    <h2 class="reveal d1">About the Work</h2>
   </div>
-  <p class="reveal d1">Created branded social media content, photography, and motion pieces for BYUH's library outreach initiatives. The work was designed to increase student awareness and drive participation across digital channels.</p>
+  <p class="reveal d1">At BYU–Hawaii's Joseph F. Smith Library, I led social media strategy and content creation for the library's outreach program. This included designing Instagram campaigns, shooting and editing content photography, producing short-form video reels and providing full photo coverage of library events — growing the library's digital presence and community engagement across platforms.</p>
 </section>
 
 <div class="photos">
   <div class="photo-grid">
-    <div class="photo-cell reveal"><img src="../../images/byuh-1.jpg" alt="BYUH Instagram campaign"></div>
-    <div class="photo-cell reveal d1"><img src="../../images/byuh-2.jpg" alt="BYUH content photography"></div>
-    <div class="photo-cell reveal d2"><img src="../../images/byuh-3.jpg" alt="BYUH motion graphics"></div>
+    <div class="photo-cell reveal">
+      <!-- <img src="../../images/byuh-1.jpg" alt="Instagram Campaign — BYUH"> -->
+      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
+      <div class="photo-label">Instagram Campaign</div>
+    </div>
+    <div class="photo-cell reveal d1">
+      <!-- <img src="../../images/byuh-2.jpg" alt="Content Photography — BYUH"> -->
+      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
+      <div class="photo-label">Content Photography</div>
+    </div>
+    <div class="photo-cell reveal d2">
+      <!-- <img src="../../images/byuh-3.jpg" alt="Reels & Motion — BYUH"> -->
+      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
+      <div class="photo-label">Reels & Motion</div>
+    </div>
+    <div class="photo-cell reveal">
+      <!-- <img src="../../images/byuh-4.jpg" alt="Event Coverage — BYUH"> -->
+      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
+      <div class="photo-label">Event Coverage</div>
+    </div>
+
   </div>
 </div>
 
 <div class="project-nav">
-  <a href="pcc-brand.html" class="pnav reveal"><span class="pnav-dir">← Previous</span><span class="pnav-name">PCC Culinary</span></a>
-  <a href="urc.html" class="pnav reveal d1"><span class="pnav-dir">Next →</span><span class="pnav-name">URC Internship</span></a>
+  <a href="pcc-brand.html" class="pnav reveal">
+    <span class="pnav-dir">← Previous</span>
+    <span class="pnav-name">PCC</span>
+  </a>
+  <a href="urc.html" class="pnav reveal d1">
+    <span class="pnav-dir">Next →</span>
+    <span class="pnav-name">URC Internship</span>
+  </a>
 </div>
 
 <footer>
   <div class="footer-logo">JVNCNTNG</div>
   <div class="footer-copy">© 2026 J INOC · All rights reserved</div>
 </footer>
+
 <script src="../../js/main.js"></script>
 </body>
 </html>
