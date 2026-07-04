@@ -37,16 +37,60 @@
   position: relative; z-index: 2;
   opacity: 0; animation: fadeUp .7s .7s forwards;
 }
+
+/* Info bar */
 .info-bar { display: grid; grid-template-columns: repeat(4,1fr); border-bottom: 1px solid var(--line); }
 .info-item { padding: 28px 40px; border-right: 1px solid var(--line); }
 .info-item:last-child { border-right: none; }
 .info-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: block; margin-bottom: 6px; }
 .info-value { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: .06em; color: var(--black); display: block; }
+
+/* Story */
 .story { padding: 72px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; border-bottom: 1px solid var(--line); }
 .story-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: flex; align-items: center; gap: 12px; }
 .story-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gray); }
 .story h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 52px); letter-spacing: .04em; margin-top: 14px; line-height: 1; }
 .story p { font-size: 18px; font-weight: 300; line-height: 1.85; color: #444; }
+
+/* Deliverables */
+.deliverables {
+  padding: 72px 52px;
+  border-bottom: 1px solid var(--line);
+  background: var(--black);
+}
+.deliverables-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 12px; margin-bottom: 48px; }
+.deliverables-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+.deliverables h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,4vw,52px); letter-spacing: .04em; color: var(--white); line-height: 1; margin-top: 14px; margin-bottom: 52px; }
+.deliverables-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,.07); }
+.deliverable-item { background: var(--black); padding: 36px 28px; transition: background .3s; }
+.deliverable-item:hover { background: #111; }
+.del-num { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--accent); line-height: 1; display: block; margin-bottom: 16px; }
+.del-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--white); margin-bottom: 8px; line-height: 1.5; }
+.del-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.35); line-height: 1.6; }
+
+/* Visit site */
+.visit-site {
+  padding: 52px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+}
+.visit-text p { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+.visit-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: .04em; color: var(--black); }
+.visit-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase;
+  text-decoration: none; color: var(--white);
+  background: var(--black); padding: 16px 32px;
+  position: relative; overflow: hidden; transition: color .4s;
+  white-space: nowrap;
+}
+.visit-btn::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-100%); transition: transform .4s cubic-bezier(.77,0,.18,1); }
+.visit-btn:hover::before { transform: translateX(0); }
+.visit-btn:hover { color: var(--black); }
+.visit-btn span { position: relative; z-index: 1; }
+
+/* Photos */
 .photos { padding: 48px 52px 80px; }
 .photo-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
 .photo-cell { position: relative; overflow: hidden; background: #111; cursor: none; }
@@ -56,29 +100,40 @@
 .photo-cell:nth-child(4) { grid-column: span 4; aspect-ratio: 4/3; }
 .photo-cell:nth-child(5) { grid-column: span 4; aspect-ratio: 4/3; }
 .photo-cell:nth-child(6) { grid-column: span 12; aspect-ratio: 21/6; }
-.photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s ease, filter .4s; filter: grayscale(10%); }
-.photo-cell:hover img { transform: scale(1.04); filter: grayscale(0%); }
+.photo-cell img,
+.photo-cell video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s ease, filter .4s; filter: grayscale(10%); }
+.photo-cell:hover img,
+.photo-cell:hover video { transform: scale(1.04); filter: grayscale(0%); }
 .photo-cell::after { content: 'View'; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--white); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0); transition: background .35s; pointer-events: none; z-index: 2; }
 .photo-cell:hover::after { background: rgba(10,10,10,.38); }
 .photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 18px; background: linear-gradient(to top, rgba(0,0,0,.75), transparent); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,244,240,.6); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; z-index: 3; }
 .photo-cell:hover .photo-label { opacity: 1; transform: none; }
+
+/* Project nav */
 .project-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
 .pnav { padding: 40px 52px; text-decoration: none; display: flex; flex-direction: column; gap: 8px; transition: background .25s; border-right: 1px solid var(--line); }
 .pnav:last-child { border-right: none; align-items: flex-end; }
 .pnav:hover { background: #f0ede8; }
 .pnav-dir { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); }
 .pnav-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: .04em; color: var(--black); }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
 @media (max-width: 768px) {
   .project-hero { padding: 80px 24px 40px; min-height: 70vh; }
   .info-bar { grid-template-columns: 1fr 1fr; }
   .story { grid-template-columns: 1fr; padding: 48px 24px; gap: 28px; }
+  .deliverables { padding: 48px 24px; }
+  .deliverables-grid { grid-template-columns: 1fr 1fr; }
+  .visit-site { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
   .photos { padding: 24px; }
   .photo-grid { grid-template-columns: 1fr; }
   .photo-cell:nth-child(n) { grid-column: span 1; aspect-ratio: 4/3; }
   .project-nav { grid-template-columns: 1fr; }
   .pnav { padding: 32px 24px; }
   .pnav:last-child { align-items: flex-start; border-right: none; border-top: 1px solid var(--line); }
+  .nav-links { display: none; }
+  .hamburger { display: flex !important; }
 }
 </style>
 </head>
@@ -98,6 +153,7 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
+
 <div class="mobile-drawer" id="mobileDrawer">
   <ul class="mobile-nav-links">
     <li><a href="../../index.html#work" class="drawer-link">Work <span>01</span></a></li>
@@ -112,58 +168,118 @@
   </div>
 </div>
 
+<!-- HERO -->
 <section class="project-hero">
   <div class="hero-bg">
-    <!-- <img src="../../images/urc-hero.jpg" alt="URC Internship"> -->
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a0a,#1a1a2a);"></div>
+    <!-- <img src="../../images/urc-hero.jpg" alt="URC 2024"> -->
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#050510,#0d0d20);"></div>
   </div>
   <div class="hero-bg-overlay"></div>
-  <div class="hero-cat">Video · Photography · Web</div>
-  <h1 class="hero-title">URC Internship</h1>
-  <p class="hero-sub">Graphic Designer & Media Marketing Intern</p>
+  <div class="hero-cat">Internship · 2024</div>
+  <h1 class="hero-title">URC<br>2024</h1>
+  <p class="hero-sub">Graphic Designer & Media Marketing Intern — BYUH Undergraduate Research Conference</p>
 </section>
 
+<!-- INFO BAR -->
 <div class="info-bar">
-  <div class="info-item reveal"><span class="info-label">Category</span><span class="info-value">Video · Photography · Web</span></div>
+  <div class="info-item reveal"><span class="info-label">Role</span><span class="info-value">Intern Team</span></div>
   <div class="info-item reveal d1"><span class="info-label">Year</span><span class="info-value">2024</span></div>
-  <div class="info-item reveal d2"><span class="info-label">Tools</span><span class="info-value">Premiere · Photoshop · HTML / CSS</span></div>
+  <div class="info-item reveal d2"><span class="info-label">Tools</span><span class="info-value">Premiere · Photoshop · HTML/CSS</span></div>
   <div class="info-item reveal d3"><span class="info-label">Client</span><span class="info-value">BYUH – URC</span></div>
 </div>
 
+<!-- STORY -->
 <section class="story">
   <div>
     <div class="story-label reveal">Background</div>
     <h2 class="reveal d1">About the Work</h2>
   </div>
-  <p class="reveal d1">As a Graphic Designer and Media Marketing Intern for the BYUH Undergraduate Research Conference, I handled the full scope of media production — from video editing and event photography to managing and updating the conference website. This role required balancing visual storytelling with web management, producing promotional materials that elevated the conference's presence both online and in print.</p>
+  <div class="reveal d1">
+    <p>The 2024 BYUH Undergraduate Research Conference brought together students from across campus to showcase academic work spanning research papers, poster sessions, and creative projects in visual arts, music and writing. The conference was held on <strong>April 3–4, 2024</strong> at BYU–Hawaii, Laie.</p>
+    <br>
+    <p>As part of the Intern Team alongside Chutamas Tavivongpaiboon and Brigham Gomez Perez, I served as Graphic Designer and Media Marketing Intern — handling the full scope of visual communication for the conference. My most significant contribution was producing and editing the <strong>conference proposal video</strong>, filming the committee's Vice President introducing the event's theme, which was used to pitch and gain approval for the conference.</p>
+    <br>
+    <p>Beyond the proposal video, I managed event photography across conference sessions, designed promotional graphics and posters shared via the <strong>BYUH Library's Instagram</strong>, and assisted in updating and managing the <strong>urc.byuh.edu</strong> website throughout the conference cycle.</p>
+  </div>
 </section>
 
+<!-- DELIVERABLES -->
+<section class="deliverables">
+  <div class="deliverables-label reveal">What I Did</div>
+  <h2 class="reveal d1">Deliverables</h2>
+  <div class="deliverables-grid">
+    <div class="deliverable-item reveal">
+      <span class="del-num">01</span>
+      <div class="del-title">Proposal Video</div>
+      <div class="del-desc">Filmed and edited the conference proposal video featuring the Vice President introducing the 2024 theme — used to pitch and secure approval for the event.</div>
+    </div>
+    <div class="deliverable-item reveal d1">
+      <span class="del-num">02</span>
+      <div class="del-title">Event Photography</div>
+      <div class="del-desc">Covered the full conference across April 3–4 — keynote sessions, poster presentations, visual arts showcase and awards ceremony.</div>
+    </div>
+    <div class="deliverable-item reveal d2">
+      <span class="del-num">03</span>
+      <div class="del-title">Marketing & Posters</div>
+      <div class="del-desc">Designed promotional graphics and posters distributed via the BYUH Library's Instagram and other digital channels to promote the conference.</div>
+    </div>
+    <div class="deliverable-item reveal d3">
+      <span class="del-num">04</span>
+      <div class="del-title">Website Management</div>
+      <div class="del-desc">Managed and updated urc.byuh.edu with conference information, schedules, call for proposals and committee details throughout the planning cycle.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT SITE -->
+<div class="visit-site reveal">
+  <div class="visit-text">
+    <p>Live Project</p>
+    <h3>2024 Conference Page</h3>
+  </div>
+  <a href="https://urc.byuh.edu/2024-undergraduate-research-conference" target="_blank" class="visit-btn">
+    <span>Visit URC Website</span><span>↗</span>
+  </a>
+</div>
+
+<!-- PHOTOS -->
 <div class="photos">
   <div class="photo-grid">
+
     <div class="photo-cell reveal">
-      <!-- <img src="../../images/urc-1.jpg" alt="Conference Video — URC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Conference Video</div>
+      <video src="../../images/urc/academic-vice-president-isaiah-walker-introduces-the-2024-conference-theme.mp4" autoplay muted loop playsinline></video>
+      <div class="photo-label">Proposal Video</div>
     </div>
+
     <div class="photo-cell reveal d1">
-      <!-- <img src="../../images/urc-2.jpg" alt="Event Photography — URC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
+      <img src="../../images/urc/urc-session.PNG" alt="URC 2024 session photography">
       <div class="photo-label">Event Photography</div>
     </div>
-    <div class="photo-cell reveal d2">
-      <!-- <img src="../../images/urc-3.jpg" alt="Website Management — URC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Website Management</div>
-    </div>
+
     <div class="photo-cell reveal">
-      <!-- <img src="../../images/urc-4.jpg" alt="Promotional Poster — URC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Promotional Poster</div>
+      <video src="../../images/urc/urc-instagram.MOV" autoplay muted loop playsinline></video>
+      <div class="photo-label">Instagram Content</div>
+    </div>
+
+    <div class="photo-cell reveal d1">
+      <img src="../../images/urc/urc-conference.poster.JPG" alt="URC 2024 conference poster">
+      <div class="photo-label">Conference Poster</div>
+    </div>
+
+    <div class="photo-cell reveal d2">
+      <img src="../../images/urc/urc-session.PNG" alt="URC 2024 session photography">
+      <div class="photo-label">Session Photography</div>
+    </div>
+
+    <div class="photo-cell reveal">
+      <img src="../../images/urc/urc.byuh.edu_website.png" alt="URC website screenshot">
+      <div class="photo-label">Website — urc.byuh.edu</div>
     </div>
 
   </div>
 </div>
 
+<!-- PREV / NEXT -->
 <div class="project-nav">
   <a href="byuh.html" class="pnav reveal">
     <span class="pnav-dir">← Previous</span>
