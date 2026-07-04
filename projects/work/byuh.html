@@ -37,16 +37,39 @@
   position: relative; z-index: 2;
   opacity: 0; animation: fadeUp .7s .7s forwards;
 }
+
 .info-bar { display: grid; grid-template-columns: repeat(4,1fr); border-bottom: 1px solid var(--line); }
 .info-item { padding: 28px 40px; border-right: 1px solid var(--line); }
 .info-item:last-child { border-right: none; }
 .info-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: block; margin-bottom: 6px; }
 .info-value { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: .06em; color: var(--black); display: block; }
+
 .story { padding: 72px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; border-bottom: 1px solid var(--line); }
 .story-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: flex; align-items: center; gap: 12px; }
 .story-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gray); }
 .story h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 52px); letter-spacing: .04em; margin-top: 14px; line-height: 1; }
 .story p { font-size: 18px; font-weight: 300; line-height: 1.85; color: #444; }
+
+.deliverables { padding: 72px 52px; border-bottom: 1px solid var(--line); background: var(--black); }
+.deliverables-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 12px; margin-bottom: 48px; }
+.deliverables-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+.deliverables h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,4vw,52px); letter-spacing: .04em; color: var(--white); line-height: 1; margin-top: 14px; margin-bottom: 52px; }
+.deliverables-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,.07); }
+.deliverable-item { background: var(--black); padding: 36px 28px; transition: background .3s; }
+.deliverable-item:hover { background: #111; }
+.del-num { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--accent); line-height: 1; display: block; margin-bottom: 16px; }
+.del-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--white); margin-bottom: 8px; line-height: 1.5; }
+.del-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.35); line-height: 1.6; }
+
+.visit-site { padding: 52px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.visit-text p { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+.visit-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: .04em; color: var(--black); }
+.visit-btn { display: inline-flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; color: var(--white); background: var(--black); padding: 16px 32px; position: relative; overflow: hidden; transition: color .4s; white-space: nowrap; }
+.visit-btn::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-100%); transition: transform .4s cubic-bezier(.77,0,.18,1); }
+.visit-btn:hover::before { transform: translateX(0); }
+.visit-btn:hover { color: var(--black); }
+.visit-btn span { position: relative; z-index: 1; }
+
 .photos { padding: 48px 52px 80px; }
 .photo-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
 .photo-cell { position: relative; overflow: hidden; background: #111; cursor: none; }
@@ -62,23 +85,31 @@
 .photo-cell:hover::after { background: rgba(10,10,10,.38); }
 .photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 18px; background: linear-gradient(to top, rgba(0,0,0,.75), transparent); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,244,240,.6); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; z-index: 3; }
 .photo-cell:hover .photo-label { opacity: 1; transform: none; }
+
 .project-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
 .pnav { padding: 40px 52px; text-decoration: none; display: flex; flex-direction: column; gap: 8px; transition: background .25s; border-right: 1px solid var(--line); }
 .pnav:last-child { border-right: none; align-items: flex-end; }
 .pnav:hover { background: #f0ede8; }
 .pnav-dir { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); }
 .pnav-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: .04em; color: var(--black); }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
 @media (max-width: 768px) {
   .project-hero { padding: 80px 24px 40px; min-height: 70vh; }
   .info-bar { grid-template-columns: 1fr 1fr; }
   .story { grid-template-columns: 1fr; padding: 48px 24px; gap: 28px; }
+  .deliverables { padding: 48px 24px; }
+  .deliverables-grid { grid-template-columns: 1fr 1fr; }
+  .visit-site { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
   .photos { padding: 24px; }
   .photo-grid { grid-template-columns: 1fr; }
   .photo-cell:nth-child(n) { grid-column: span 1; aspect-ratio: 4/3; }
   .project-nav { grid-template-columns: 1fr; }
   .pnav { padding: 32px 24px; }
   .pnav:last-child { align-items: flex-start; border-right: none; border-top: 1px solid var(--line); }
+  .nav-links { display: none; }
+  .hamburger { display: flex !important; }
 }
 </style>
 </head>
@@ -98,6 +129,7 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
+
 <div class="mobile-drawer" id="mobileDrawer">
   <ul class="mobile-nav-links">
     <li><a href="../../index.html#work" class="drawer-link">Work <span>01</span></a></li>
@@ -112,58 +144,124 @@
   </div>
 </div>
 
+<!-- HERO -->
 <section class="project-hero">
   <div class="hero-bg">
     <!-- <img src="../../images/byuh-hero.jpg" alt="BYUH Library"> -->
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a0a,#1a1a2a);"></div>
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#050510,#0a0a20);"></div>
   </div>
   <div class="hero-bg-overlay"></div>
-  <div class="hero-cat">Social Media & Photography</div>
-  <h1 class="hero-title">BYUH Library</h1>
-  <p class="hero-sub">Library Outreach · Graphic Designer · Social Media Manager</p>
+  <div class="hero-cat">Library Outreach · 2023 – 2024</div>
+  <h1 class="hero-title">BYUH<br>Library</h1>
+  <p class="hero-sub">Graphic Designer · Social Media Manager · Content Creator — Joseph F. Smith Library, BYU–Hawaii</p>
 </section>
 
+<!-- INFO BAR -->
 <div class="info-bar">
-  <div class="info-item reveal"><span class="info-label">Category</span><span class="info-value">Social Media & Photography</span></div>
+  <div class="info-item reveal"><span class="info-label">Role</span><span class="info-value">Social Media Manager</span></div>
   <div class="info-item reveal d1"><span class="info-label">Year</span><span class="info-value">2023 – 2024</span></div>
   <div class="info-item reveal d2"><span class="info-label">Tools</span><span class="info-value">Photoshop · Lightroom · Premiere</span></div>
   <div class="info-item reveal d3"><span class="info-label">Client</span><span class="info-value">BYU–Hawaii</span></div>
 </div>
 
+<!-- STORY -->
 <section class="story">
   <div>
     <div class="story-label reveal">Background</div>
     <h2 class="reveal d1">About the Work</h2>
   </div>
-  <p class="reveal d1">At BYU–Hawaii's Joseph F. Smith Library, I led social media strategy and content creation for the library's outreach program. This included designing Instagram campaigns, shooting and editing content photography, producing short-form video reels and providing full photo coverage of library events — growing the library's digital presence and community engagement across platforms.</p>
+  <div class="reveal d1">
+    <p>The Joseph F. Smith Library at BYU–Hawaii is a central hub of academic life on campus — supporting students through research, scholarship and community engagement. As the student <strong>Graphic Designer and Social Media Manager</strong>, I was responsible for running the library's Instagram account and producing the bulk of its visual content output throughout the 2023–2024 academic year.</p>
+    <br>
+    <p>Instagram was my primary platform. I created and managed a high volume of graphics — promotional posts, event announcements, campaign visuals and story content — while maintaining a consistent and engaging visual identity for the library's student audience. Beyond static graphics, I produced <strong>short-form video content and reels</strong>, handled <strong>content photography</strong> for events, and turned around a large volume of creative work on a rolling basis.</p>
+    <br>
+    <p>This role pushed my production speed and creative range — designing across multiple formats, staying on-brand, and delivering content consistently. It was less about one big project and more about building a sustained creative output that kept the library visible, relevant and connected to the BYUH campus community.</p>
+  </div>
 </section>
 
+<!-- DELIVERABLES -->
+<section class="deliverables">
+  <div class="deliverables-label reveal">What I Did</div>
+  <h2 class="reveal d1">Deliverables</h2>
+  <div class="deliverables-grid">
+    <div class="deliverable-item reveal">
+      <span class="del-num">01</span>
+      <div class="del-title">Instagram Management</div>
+      <div class="del-desc">Managed the BYUH Library's Instagram account end-to-end — content planning, graphic production, posting schedule and community engagement.</div>
+    </div>
+    <div class="deliverable-item reveal d1">
+      <span class="del-num">02</span>
+      <div class="del-title">Graphic Production</div>
+      <div class="del-desc">Produced a high volume of promotional graphics — event posters, Instagram posts, stories and campaign assets — across the full academic year.</div>
+    </div>
+    <div class="deliverable-item reveal d2">
+      <span class="del-num">03</span>
+      <div class="del-title">Video Content & Reels</div>
+      <div class="del-desc">Filmed, edited and published short-form video content and Instagram reels — covering library events, student life and promotional campaigns.</div>
+    </div>
+    <div class="deliverable-item reveal d3">
+      <span class="del-num">04</span>
+      <div class="del-title">Content Photography</div>
+      <div class="del-desc">Shot and edited photography for library events and activations — supplying original imagery for social media posts, posters and digital displays.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT SITE -->
+<div class="visit-site reveal">
+  <div class="visit-text">
+    <p>Institution</p>
+    <h3>Joseph F. Smith Library — BYUH</h3>
+  </div>
+  <a href="https://library.byuh.edu" target="_blank" class="visit-btn">
+    <span>Visit Library Website</span><span>↗</span>
+  </a>
+</div>
+
+<!-- PHOTOS -->
 <div class="photos">
   <div class="photo-grid">
+
     <div class="photo-cell reveal">
-      <!-- <img src="../../images/byuh-1.jpg" alt="Instagram Campaign — BYUH"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Instagram Campaign</div>
+      <!-- <img src="../../images/byuh-1.jpg" alt="Instagram Campaign — BYUH Library"> -->
+      <div style="width:100%;height:100%;background:#080810;"></div>
+      <div class="photo-label">Instagram Management</div>
     </div>
+
     <div class="photo-cell reveal d1">
-      <!-- <img src="../../images/byuh-2.jpg" alt="Content Photography — BYUH"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Content Photography</div>
+      <!-- <img src="../../images/byuh-2.jpg" alt="Content Photography — BYUH Library"> -->
+      <div style="width:100%;height:100%;background:#0a0a0a;"></div>
+      <div class="photo-label">Graphic Production</div>
     </div>
-    <div class="photo-cell reveal d2">
-      <!-- <img src="../../images/byuh-3.jpg" alt="Reels & Motion — BYUH"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
+
+    <div class="photo-cell reveal">
+      <!-- <img src="../../images/byuh-3.jpg" alt="Instagram Reels — BYUH Library"> -->
+      <div style="width:100%;height:100%;background:#0d0d10;"></div>
       <div class="photo-label">Reels & Motion</div>
     </div>
+
+    <div class="photo-cell reveal d1">
+      <!-- <img src="../../images/byuh-4.jpg" alt="Event Coverage — BYUH Library"> -->
+      <div style="width:100%;height:100%;background:#080808;"></div>
+      <div class="photo-label">Event Coverage</div>
+    </div>
+
+    <div class="photo-cell reveal d2">
+      <!-- <img src="../../images/byuh-5.jpg" alt="Library Poster Design"> -->
+      <div style="width:100%;height:100%;background:#0a080d;"></div>
+      <div class="photo-label">Content Photography</div>
+    </div>
+
     <div class="photo-cell reveal">
-      <!-- <img src="../../images/byuh-4.jpg" alt="Event Coverage — BYUH"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
+      <!-- <img src="../../images/byuh-6.jpg" alt="Library Social Media Content"> -->
+      <div style="width:100%;height:100%;background:#05050a;"></div>
       <div class="photo-label">Event Coverage</div>
     </div>
 
   </div>
 </div>
 
+<!-- PREV / NEXT -->
 <div class="project-nav">
   <a href="pcc-brand.html" class="pnav reveal">
     <span class="pnav-dir">← Previous</span>

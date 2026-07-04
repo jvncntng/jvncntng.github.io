@@ -93,7 +93,9 @@
 /* Photos */
 .photos { padding: 48px 52px 80px; }
 .photo-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
-.photo-cell { position: relative; overflow: hidden; background: #111; cursor: none; }
+.photo-cell { position: relative; overflow: hidden; background: #111; cursor: none; transition: transform .25s ease, box-shadow .25s ease; }
+.photo-cell:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,.18); }
+.photo-cell:active { transform: translateY(0); }
 .photo-cell:nth-child(1) { grid-column: span 7; aspect-ratio: 16/9; }
 .photo-cell:nth-child(2) { grid-column: span 5; aspect-ratio: 4/3; }
 .photo-cell:nth-child(3) { grid-column: span 4; aspect-ratio: 4/3; }
@@ -106,8 +108,70 @@
 .photo-cell:hover video { transform: scale(1.04); filter: grayscale(0%); }
 .photo-cell::after { content: 'View'; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--white); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0); transition: background .35s; pointer-events: none; z-index: 2; }
 .photo-cell:hover::after { background: rgba(10,10,10,.38); }
+.photo-cell.video-active::after { content: 'Playing'; background: rgba(10,10,10,.55); }
 .photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 18px; background: linear-gradient(to top, rgba(0,0,0,.75), transparent); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,244,240,.6); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; z-index: 3; }
 .photo-cell:hover .photo-label { opacity: 1; transform: none; }
+.photo-cell.video-active .photo-label { opacity: 1; transform: none; }
+
+/* Full-view modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 2000;
+}
+.modal-overlay.active { display: flex; }
+.modal-content {
+  width: min(100%, 1000px);
+  max-height: 90vh;
+  background: #000;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  position: relative;
+  overflow: hidden;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(0,0,0,.65);
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  z-index: 5;
+}
+.modal-video {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+.modal-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 20px 18px;
+  background: linear-gradient(to top, rgba(0,0,0,.8), transparent);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.82);
+}
 
 /* Project nav */
 .project-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
@@ -246,8 +310,8 @@
 <div class="photos">
   <div class="photo-grid">
 
-    <div class="photo-cell reveal">
-      <video src="../../images/urc/academic-vice-president-isaiah-walker-introduces-the-2024-conference-theme.mp4" autoplay muted loop playsinline></video>
+    <div class="photo-cell reveal video-tile" data-video="../../images/urc/academic-vice-president-isaiah-walker-introduces-the-2024-conference-theme.mp4">
+      <video preload="metadata" playsinline controls muted loop></video>
       <div class="photo-label">Proposal Video</div>
     </div>
 
@@ -256,8 +320,8 @@
       <div class="photo-label">Event Photography</div>
     </div>
 
-    <div class="photo-cell reveal">
-      <video src="../../images/urc/urc-instagram.MOV" autoplay muted loop playsinline></video>
+    <div class="photo-cell reveal video-tile" data-video="../../images/urc/urc-instagram.MOV">
+      <video preload="metadata" playsinline controls muted loop></video>
       <div class="photo-label">Instagram Content</div>
     </div>
 
@@ -296,6 +360,73 @@
   <div class="footer-copy">© 2026 J INOC · All rights reserved</div>
 </footer>
 
+<div class="modal-overlay" id="videoModal" aria-hidden="true">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <video class="modal-video" id="modalVideo" controls playsinline></video>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+</div>
+
 <script src="../../js/main.js"></script>
+<script>
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const modalCaption = document.getElementById('modalCaption');
+  const modalClose = document.getElementById('modalClose');
+
+  document.querySelectorAll('.video-tile').forEach((tile) => {
+    const video = tile.querySelector('video');
+    const videoSrc = tile.getAttribute('data-video');
+    const caption = tile.querySelector('.photo-label')?.textContent || 'Video';
+
+    if (video && videoSrc) {
+      video.src = videoSrc;
+    }
+
+    tile.addEventListener('mouseenter', () => {
+      if (video) {
+        video.play().catch(() => {});
+      }
+      tile.classList.add('video-active');
+    });
+
+    tile.addEventListener('mouseleave', () => {
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+      tile.classList.remove('video-active');
+    });
+
+    tile.addEventListener('click', () => {
+      if (modalVideo && videoSrc) {
+        modalVideo.src = videoSrc;
+        modalVideo.load();
+        modalCaption.textContent = caption;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    if (modalVideo) {
+      modalVideo.pause();
+      modalVideo.currentTime = 0;
+    }
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
 </body>
 </html>

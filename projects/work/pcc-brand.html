@@ -6,79 +6,174 @@
 <title>Polynesian Cultural Center — JVNCNTNG</title>
 <link rel="stylesheet" href="../../css/style.css">
 <style>
+/* ── HERO ── */
 .project-hero {
-  min-height: 88vh; padding-top: 64px;
+  min-height: 100vh; padding-top: 64px;
   position: relative; overflow: hidden; background: var(--black);
   display: flex; flex-direction: column; justify-content: flex-end;
-  padding-left: 52px; padding-right: 52px; padding-bottom: 56px;
+  padding-left: 52px; padding-right: 52px; padding-bottom: 64px;
 }
 .hero-bg { position: absolute; inset: 0; }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.35); }
-.hero-bg-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.15) 70%); }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.3) saturate(1.2); }
+.hero-bg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.1) 65%);
+}
 .hero-cat {
   font-family: 'DM Mono', monospace; font-size: 10px;
   letter-spacing: .22em; text-transform: uppercase; color: var(--accent);
-  margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
   position: relative; z-index: 2;
   opacity: 0; animation: fadeUp .7s .3s forwards;
 }
 .hero-cat::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(64px, 11vw, 150px); line-height: .9;
+  font-size: clamp(72px, 14vw, 180px); line-height: .88;
   color: var(--white); letter-spacing: -.01em;
   position: relative; z-index: 2;
   opacity: 0; animation: fadeUp .8s .5s forwards;
 }
+.hero-title span {
+  display: block; color: transparent;
+  -webkit-text-stroke: 2px rgba(255,255,255,.5);
+}
 .hero-sub {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 300; font-style: italic;
-  color: rgba(255,255,255,.45); margin-top: 20px;
+  font-size: 19px; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,.4); margin-top: 24px;
   position: relative; z-index: 2;
   opacity: 0; animation: fadeUp .7s .7s forwards;
+  max-width: 560px;
 }
+
+/* ── INFO BAR ── */
 .info-bar { display: grid; grid-template-columns: repeat(4,1fr); border-bottom: 1px solid var(--line); }
 .info-item { padding: 28px 40px; border-right: 1px solid var(--line); }
 .info-item:last-child { border-right: none; }
 .info-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: block; margin-bottom: 6px; }
 .info-value { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: .06em; color: var(--black); display: block; }
-.story { padding: 72px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; border-bottom: 1px solid var(--line); }
-.story-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: flex; align-items: center; gap: 12px; }
-.story-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gray); }
-.story h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 52px); letter-spacing: .04em; margin-top: 14px; line-height: 1; }
-.story p { font-size: 18px; font-weight: 300; line-height: 1.85; color: #444; }
-.photos { padding: 48px 52px 80px; }
+
+/* ── INTRO ── */
+.intro {
+  padding: 72px 52px;
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 60px; border-bottom: 1px solid var(--line);
+}
+.intro-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); display: flex; align-items: center; gap: 12px; }
+.intro-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gray); }
+.intro h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 52px); letter-spacing: .04em; margin-top: 14px; line-height: 1; }
+.intro p { font-size: 18px; font-weight: 300; line-height: 1.85; color: #444; }
+
+/* ── BRANDS ── */
+.brands {
+  padding: 72px 52px;
+  background: var(--black);
+  border-bottom: 1px solid var(--line);
+}
+.brands-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.brands-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+.brands h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,4vw,56px); letter-spacing: .04em; color: var(--white); line-height: 1; margin-bottom: 52px; margin-top: 14px; }
+.brands-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.brand-card {
+  background: #0d0d0d;
+  padding: 48px 44px;
+  position: relative; overflow: hidden;
+  transition: background .3s;
+  border-right: 1px solid rgba(255,255,255,.06);
+}
+.brand-card:last-child { border-right: none; }
+.brand-card:hover { background: #111; }
+.brand-card::before {
+  content: '';
+  position: absolute; top: -20%; right: -10%;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,184,154,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.brand-num { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: .18em; color: var(--accent); margin-bottom: 28px; display: block; }
+.brand-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 68px); letter-spacing: .04em; color: var(--white); line-height: 1; margin-bottom: 16px; }
+.brand-meaning { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.3); margin-bottom: 24px; }
+.brand-desc { font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,.4); }
+.brand-scope { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.scope-tag { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 12px; border: 1px solid rgba(200,184,154,.2); color: rgba(200,184,154,.5); }
+
+/* ── SCOPE BAR ── */
+.scope-bar {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid var(--line);
+  background: var(--black);
+}
+.scope-item { padding: 28px 32px; border-right: 1px solid rgba(255,255,255,.06); text-align: center; }
+.scope-item:last-child { border-right: none; }
+.scope-icon { font-size: 22px; display: block; margin-bottom: 10px; }
+.scope-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+
+/* ── VISIT ── */
+.visit-site { padding: 52px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.visit-text p { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+.visit-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: .04em; color: var(--black); }
+.visit-btn { display: inline-flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; color: var(--white); background: var(--black); padding: 16px 32px; position: relative; overflow: hidden; transition: color .4s; white-space: nowrap; }
+.visit-btn::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-100%); transition: transform .4s cubic-bezier(.77,0,.18,1); }
+.visit-btn:hover::before { transform: translateX(0); }
+.visit-btn:hover { color: var(--black); }
+.visit-btn span { position: relative; z-index: 1; }
+
+/* ── PHOTOS ── */
+.photos { padding: 0 0 0 0; }
+.photo-section-label {
+  padding: 48px 52px 28px;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gray); display: flex; align-items: center; gap: 12px;
+}
+.photo-section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gray); }
 .photo-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
 .photo-cell { position: relative; overflow: hidden; background: #111; cursor: none; }
+
+/* Grid layout — large first, then 2-col, then full-width */
 .photo-cell:nth-child(1) { grid-column: span 7; aspect-ratio: 16/9; }
 .photo-cell:nth-child(2) { grid-column: span 5; aspect-ratio: 4/3; }
-.photo-cell:nth-child(3) { grid-column: span 4; aspect-ratio: 4/3; }
-.photo-cell:nth-child(4) { grid-column: span 4; aspect-ratio: 4/3; }
-.photo-cell:nth-child(5) { grid-column: span 4; aspect-ratio: 4/3; }
-.photo-cell:nth-child(6) { grid-column: span 12; aspect-ratio: 21/6; }
-.photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s ease, filter .4s; filter: grayscale(10%); }
+.photo-cell:nth-child(3) { grid-column: span 5; aspect-ratio: 4/3; }
+.photo-cell:nth-child(4) { grid-column: span 7; aspect-ratio: 16/9; }
+.photo-cell:nth-child(5) { grid-column: span 6; aspect-ratio: 4/3; }
+.photo-cell:nth-child(6) { grid-column: span 6; aspect-ratio: 4/3; }
+
+.photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease, filter .4s; filter: grayscale(8%); }
 .photo-cell:hover img { transform: scale(1.04); filter: grayscale(0%); }
 .photo-cell::after { content: 'View'; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--white); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0); transition: background .35s; pointer-events: none; z-index: 2; }
 .photo-cell:hover::after { background: rgba(10,10,10,.38); }
-.photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 18px; background: linear-gradient(to top, rgba(0,0,0,.75), transparent); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,244,240,.6); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; z-index: 3; }
+.photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 18px; background: linear-gradient(to top, rgba(0,0,0,.8), transparent); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,244,240,.65); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; z-index: 3; }
 .photo-cell:hover .photo-label { opacity: 1; transform: none; }
+
+/* ── NAV ── */
 .project-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
 .pnav { padding: 40px 52px; text-decoration: none; display: flex; flex-direction: column; gap: 8px; transition: background .25s; border-right: 1px solid var(--line); }
 .pnav:last-child { border-right: none; align-items: flex-end; }
 .pnav:hover { background: #f0ede8; }
 .pnav-dir { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); }
 .pnav-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: .04em; color: var(--black); }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
 @media (max-width: 768px) {
-  .project-hero { padding: 80px 24px 40px; min-height: 70vh; }
+  .project-hero { padding: 80px 24px 48px; min-height: 80vh; }
   .info-bar { grid-template-columns: 1fr 1fr; }
-  .story { grid-template-columns: 1fr; padding: 48px 24px; gap: 28px; }
-  .photos { padding: 24px; }
+  .intro { grid-template-columns: 1fr; padding: 48px 24px; gap: 28px; }
+  .brands { padding: 48px 24px; }
+  .brands-grid { grid-template-columns: 1fr; }
+  .scope-bar { grid-template-columns: repeat(3,1fr); }
+  .scope-bar .scope-item:nth-child(n+4) { border-top: 1px solid rgba(255,255,255,.06); }
+  .visit-site { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
+  .photo-section-label { padding: 36px 24px 20px; }
   .photo-grid { grid-template-columns: 1fr; }
   .photo-cell:nth-child(n) { grid-column: span 1; aspect-ratio: 4/3; }
   .project-nav { grid-template-columns: 1fr; }
   .pnav { padding: 32px 24px; }
   .pnav:last-child { align-items: flex-start; border-right: none; border-top: 1px solid var(--line); }
+  .nav-links { display: none; }
+  .hamburger { display: flex !important; }
 }
 </style>
 </head>
@@ -98,6 +193,7 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
+
 <div class="mobile-drawer" id="mobileDrawer">
   <ul class="mobile-nav-links">
     <li><a href="../../index.html#work" class="drawer-link">Work <span>01</span></a></li>
@@ -112,68 +208,154 @@
   </div>
 </div>
 
+<!-- HERO -->
 <section class="project-hero">
   <div class="hero-bg">
     <!-- <img src="../../images/pcc-hero.jpg" alt="Polynesian Cultural Center"> -->
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a0a,#1a1a2a);"></div>
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#05050a,#0d0d18);"></div>
   </div>
   <div class="hero-bg-overlay"></div>
-  <div class="hero-cat">Branding & Identity</div>
-  <h1 class="hero-title">Polynesian Cultural Center</h1>
-  <p class="hero-sub">Graphic Designer · Culinary & Retail Division</p>
+  <div class="hero-cat">Branding & Identity · 2025 – Present</div>
+  <h1 class="hero-title">Polynesian<br><span>Cultural</span><br>Center</h1>
+  <p class="hero-sub">Graphic Designer — Culinary & Retail Division. Brand identity, signage and environmental design for Hawaii's #1 cultural attraction.</p>
 </section>
 
+<!-- INFO BAR -->
 <div class="info-bar">
-  <div class="info-item reveal"><span class="info-label">Category</span><span class="info-value">Branding & Identity</span></div>
+  <div class="info-item reveal"><span class="info-label">Role</span><span class="info-value">Graphic Designer</span></div>
   <div class="info-item reveal d1"><span class="info-label">Year</span><span class="info-value">2025 – Present</span></div>
   <div class="info-item reveal d2"><span class="info-label">Tools</span><span class="info-value">Illustrator · InDesign · Photoshop</span></div>
-  <div class="info-item reveal d3"><span class="info-label">Client</span><span class="info-value">PCC</span></div>
+  <div class="info-item reveal d3"><span class="info-label">Client</span><span class="info-value">PCC — Laie, Hawaii</span></div>
 </div>
 
-<section class="story">
+<!-- INTRO -->
+<section class="intro">
   <div>
-    <div class="story-label reveal">Background</div>
-    <h2 class="reveal d1">About the Work</h2>
+    <div class="intro-label reveal">Overview</div>
+    <h2 class="reveal d1">The Work</h2>
   </div>
-  <p class="reveal d1">As the in-house Graphic Designer for the Culinary and Retail Division at the Polynesian Cultural Center, I develop the visual identity that supports one of Hawaii's most visited cultural destinations. Work spans brand identity systems, environmental signage, product labelling, logo design, marketing collateral and event graphics — all unified under a cohesive visual language that celebrates Polynesian culture and hospitality.</p>
+  <div class="reveal d1">
+    <p>The Polynesian Cultural Center — Hawaii's #1 attraction — draws over 700,000 visitors annually to its 42-acre living museum in Laie, O'ahu. As in-house Graphic Designer for the Culinary and Retail Division, I create the visual identity that guests encounter across dining, retail and wayfinding touchpoints throughout the property.</p>
+    <br>
+    <p>The scope spans brand identity and logo design for named culinary concepts, through to menus, A-frame signs, food signage and large-format environmental signage. Every piece has to work in a high-traffic, high-visibility environment — clear, on-brand, and worthy of one of Hawaii's most photographed destinations.</p>
+  </div>
 </section>
 
+<!-- BRANDS -->
+<section class="brands">
+  <div class="brands-label reveal">Named Brands</div>
+  <h2 class="reveal d1">Brand Identity Work</h2>
+  <div class="brands-grid">
+
+    <div class="brand-card reveal">
+      <span class="brand-num">Brand 01</span>
+      <div class="brand-name">Meahookipa</div>
+      <div class="brand-meaning">"The spirit of hospitality" — Hawaiian</div>
+      <p class="brand-desc">Full brand identity and logo design for Meahookipa — a PCC culinary concept rooted in the Hawaiian spirit of welcoming and hosting. Designed to feel warm, culturally grounded and distinctly Polynesian.</p>
+      <div class="brand-scope">
+        <span class="scope-tag">Logo Design</span>
+        <span class="scope-tag">Brand Identity</span>
+        <span class="scope-tag">Typography</span>
+        <span class="scope-tag">Colour System</span>
+      </div>
+    </div>
+
+    <div class="brand-card reveal d1">
+      <span class="brand-num">Brand 02</span>
+      <div class="brand-name">Hukilau Lunch Buffet</div>
+      <div class="brand-meaning">Named after Laie's historic hukilau tradition</div>
+      <p class="brand-desc">Branding and signage for PCC's newly launched Hukilau Lunch Buffet at the Gateway Restaurant — an island-inspired dining experience featuring kalua pork, Hawaii catch of the day and Huli Huli chicken. Daily from 11am–1pm.</p>
+      <div class="brand-scope">
+        <span class="scope-tag">Logo Design</span>
+        <span class="scope-tag">Menu Design</span>
+        <span class="scope-tag">Signage</span>
+        <span class="scope-tag">Launch Materials</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCOPE BAR -->
+<div class="scope-bar">
+  <div class="scope-item reveal">
+    <span class="scope-icon">◻</span>
+    <span class="scope-name">Menus</span>
+  </div>
+  <div class="scope-item reveal d1">
+    <span class="scope-icon">◻</span>
+    <span class="scope-name">A-Frame Signs</span>
+  </div>
+  <div class="scope-item reveal d2">
+    <span class="scope-icon">◻</span>
+    <span class="scope-name">Food Signage</span>
+  </div>
+  <div class="scope-item reveal d3">
+    <span class="scope-icon">◻</span>
+    <span class="scope-name">Large Format</span>
+  </div>
+  <div class="scope-item reveal d3">
+    <span class="scope-icon">◻</span>
+    <span class="scope-name">Logo Design</span>
+  </div>
+</div>
+
+<!-- VISIT -->
+<div class="visit-site reveal">
+  <div class="visit-text">
+    <p>Live Destination</p>
+    <h3>polynesia.com</h3>
+  </div>
+  <a href="https://www.polynesia.com" target="_blank" class="visit-btn">
+    <span>Visit PCC Website</span><span>↗</span>
+  </a>
+</div>
+
+<!-- PHOTOS -->
 <div class="photos">
+  <div class="photo-section-label reveal">Work Gallery</div>
   <div class="photo-grid">
+
     <div class="photo-cell reveal">
-      <!-- <img src="../../images/pcc-1.jpg" alt="Brand Identity — PCC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Brand Identity</div>
+      <!-- <img src="../../images/pcc-1.jpg" alt="Meahookipa Brand Identity"> -->
+      <div style="width:100%;height:100%;background:#0d0d0d;"></div>
+      <div class="photo-label">Meahookipa — Brand Identity</div>
     </div>
+
     <div class="photo-cell reveal d1">
-      <!-- <img src="../../images/pcc-2.jpg" alt="Signage Design — PCC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Signage Design</div>
+      <!-- <img src="../../images/pcc-2.jpg" alt="Meahookipa Logo Design"> -->
+      <div style="width:100%;height:100%;background:#111;"></div>
+      <div class="photo-label">Meahookipa — Logo Design</div>
     </div>
-    <div class="photo-cell reveal d2">
-      <!-- <img src="../../images/pcc-3.jpg" alt="Product Labelling — PCC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Product Labelling</div>
-    </div>
+
     <div class="photo-cell reveal">
-      <!-- <img src="../../images/pcc-4.jpg" alt="Logo Design — PCC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Logo Design</div>
+      <!-- <img src="../../images/pcc-3.jpg" alt="Hukilau Lunch Buffet Branding"> -->
+      <div style="width:100%;height:100%;background:#0d0d10;"></div>
+      <div class="photo-label">Hukilau Lunch Buffet — Branding</div>
     </div>
+
     <div class="photo-cell reveal d1">
-      <!-- <img src="../../images/pcc-5.jpg" alt="Marketing Collateral — PCC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Marketing Collateral</div>
+      <!-- <img src="../../images/pcc-4.jpg" alt="Menu & Signage Design"> -->
+      <div style="width:100%;height:100%;background:#080808;"></div>
+      <div class="photo-label">Menu & Signage Design</div>
     </div>
-    <div class="photo-cell reveal d2">
-      <!-- <img src="../../images/pcc-6.jpg" alt="Event Graphics — PCC"> -->
-      <div style="width:100%;height:100%;background:#111;min-height:280px;"></div>
-      <div class="photo-label">Event Graphics</div>
+
+    <div class="photo-cell reveal">
+      <!-- <img src="../../images/pcc-5.jpg" alt="A-Frame & Food Signage"> -->
+      <div style="width:100%;height:100%;background:#0a0a0a;"></div>
+      <div class="photo-label">A-Frame & Food Signage</div>
+    </div>
+
+    <div class="photo-cell reveal d1">
+      <!-- <img src="../../images/pcc-6.jpg" alt="Large Format Environmental Signage"> -->
+      <div style="width:100%;height:100%;background:#0d0d0d;"></div>
+      <div class="photo-label">Environmental Signage</div>
     </div>
 
   </div>
 </div>
 
+<!-- PREV / NEXT -->
 <div class="project-nav">
   <a href="urc.html" class="pnav reveal">
     <span class="pnav-dir">← Previous</span>
