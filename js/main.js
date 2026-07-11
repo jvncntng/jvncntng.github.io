@@ -51,24 +51,21 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
 // ── LIGHTBOX ─────────────────────────────────────────────────────────────────
 (function initLightbox() {
-  // Only run on project pages that have .photo-cell elements
-  const cells = document.querySelectorAll('.photo-cell');
-  if (!cells.length) return;
+  // Run on pages that have clickable media items
+  const mediaItems = document.querySelectorAll('.photo-cell, .gallery-item');
+  if (!mediaItems.length) return;
 
-  // Collect all images inside photo cells
+  // Collect all images inside clickable media items
   let images = [];
   let current = 0;
 
-  cells.forEach((cell, i) => {
-    const img = cell.querySelector('img');
+  mediaItems.forEach(item => {
+    const img = item.querySelector('img');
     if (!img) return;
 
     images.push({ src: img.src, alt: img.alt || '' });
 
-    cell.addEventListener('click', () => openLightbox(images.indexOf({ src: img.src, alt: img.alt || '' })));
-
-    // Find index by matching src
-    cell.addEventListener('click', () => {
+    item.addEventListener('click', () => {
       const idx = images.findIndex(im => im.src === img.src);
       openLightbox(idx >= 0 ? idx : 0);
     });
