@@ -305,6 +305,106 @@
         margin-bottom: 32px;
       }
     }
+
+    /* Success Message */
+    .success-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .success-modal.show {
+      display: flex;
+    }
+
+    .success-content {
+      background: var(--white);
+      padding: 60px 40px;
+      border-radius: 0;
+      border: 1px solid var(--line);
+      max-width: 500px;
+      text-align: center;
+      animation: slideUp 0.4s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .success-content h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      text-transform: none;
+      letter-spacing: normal;
+      margin-bottom: 12px;
+      color: var(--black);
+      display: block;
+    }
+
+    .success-content h2::before {
+      display: none;
+    }
+
+    .success-content p {
+      color: var(--gray);
+      font-size: 1rem;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .success-buttons {
+      display: flex;
+      gap: 16px;
+      flex-direction: column;
+    }
+
+    .success-buttons a,
+    .success-buttons button {
+      padding: 12px 24px;
+      border-radius: 0;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    .success-buttons .primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .success-buttons .primary:hover {
+      background: #b8a585;
+    }
+
+    .success-buttons .secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .success-buttons .secondary:hover {
+      background: rgba(200, 184, 154, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -482,6 +582,33 @@
   <footer>
     Ready to take the next step? <a href="index.html">← Back to JVNT</a>
   </footer>
+
+  <!-- Success Modal -->
+  <div class="success-modal" id="successModal">
+    <div class="success-content">
+      <div class="success-icon">✨</div>
+      <h2>Vision Received!</h2>
+      <p>Thank you for sharing your creative vision. I can't wait to bring your brand to life. You'll hear from me soon.</p>
+      <div class="success-buttons">
+        <a href="index.html" class="primary">View My Work</a>
+        <button class="secondary" onclick="location.reload()">Start Over</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('form');
+      const successModal = document.getElementById('successModal');
+
+      form.addEventListener('submit', function(e) {
+        // Allow form to submit normally
+        setTimeout(function() {
+          successModal.classList.add('show');
+        }, 1000);
+      });
+    });
+  </script>
 
 </body>
 </html>
