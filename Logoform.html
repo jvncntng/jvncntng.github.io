@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Logo Intake Form</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #111827;
+      --accent-hover: #374151;
+      --focus-ring: #2563eb;
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    section {
+      margin-bottom: 36px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    span.hint {
+      display: block;
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) - 2px);
+      font-size: 0.95rem;
+      font-family: inherit;
+      background-color: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="url"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Sliders styling */
+    .slider-group {
+      margin-bottom: 24px;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    .slider-value {
+      font-size: 0.85rem;
+      font-weight: 600;
+      width: 24px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* Checkbox & Radio groups */
+    .checkbox-grid,
+    .radio-stack {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .checkbox-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: normal;
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) - 2px);
+      transition: background-color 0.15s;
+    }
+
+    .option-label:hover {
+      background-color: var(--bg);
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      accent-color: var(--accent);
+      width: 16px;
+      height: 16px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button[type="submit"]:hover {
+      background: var(--accent-hover);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 24px 16px;
+      }
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Logo Design Intake Form</h1>
+      <p class="subtitle">Please complete this questionnaire to help define the vision and direction for your logo.</p>
+    </header>
+
+    <form action="#" method="POST" onsubmit="event.preventDefault();">
+
+      <!-- Section 1 -->
+      <section>
+        <h2>1. Brand Foundation & Personality</h2>
+
+        <div class="form-group">
+          <label for="brand-name">Brand Name</label>
+          <input type="text" id="brand-name" name="brand_name" placeholder="e.g., Acme Studio" required>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-offering">Product / Service Description</label>
+          <span class="hint">What product, service, or experience do you provide?</span>
+          <textarea id="brand-offering" name="brand_offering" rows="2"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-adjectives">Brand Personality Adjectives</label>
+          <span class="hint">List 3 adjectives describing your brand (e.g., modern, warm, authoritative).</span>
+          <input type="text" id="brand-adjectives" name="brand_adjectives" placeholder="1. Modern, 2. Clean, 3. Refined">
+        </div>
+
+        <div class="form-group">
+          <label for="target-audience">Target Audience & Desired Impression</label>
+          <span class="hint">Who is your primary customer, and what should they feel when seeing the logo?</span>
+          <textarea id="target-audience" name="target_audience" rows="2" placeholder="e.g., Young professionals seeking modern, reliable financial tools."></textarea>
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section>
+        <h2>2. Visual Style Sliders</h2>
+
+        <div class="slider-group">
+          <div class="slider-labels">
+            <span>Classic</span>
+            <span>Modern</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="slider-1" name="style_classic_modern" min="1" max="5" value="3" oninput="document.getElementById('val-1').innerText = this.value">
+            <span class="slider-value" id="val-1">3</span>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-labels">
+            <span>Playful</span>
+            <span>Serious</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="slider-2" name="style_playful_serious" min="1" max="5" value="3" oninput="document.getElementById('val-2').innerText = this.value">
+            <span class="slider-value" id="val-2">3</span>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-labels">
+            <span>Minimalist</span>
+            <span>Detailed</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="slider-3" name="style_minimal_detailed" min="1" max="5" value="3" oninput="document.getElementById('val-3').innerText = this.value">
+            <span class="slider-value" id="val-3">3</span>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-labels">
+            <span>Casual</span>
+            <span>Luxurious</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="slider-4" name="style_casual_luxurious" min="1" max="5" value="3" oninput="document.getElementById('val-4').innerText = this.value">
+            <span class="slider-value" id="val-4">3</span>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-labels">
+            <span>Subtle</span>
+            <span>Bold</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="slider-5" name="style_subtle_bold" min="1" max="5" value="3" oninput="document.getElementById('val-5').innerText = this.value">
+            <span class="slider-value" id="val-5">3</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section>
+        <h2>3. Visual Inspiration & Elimination</h2>
+
+        <div class="form-group">
+          <label for="logos-liked">Logos You Like</label>
+          <span class="hint">Share links or names of 2–3 logos you like and why.</span>
+          <textarea id="logos-liked" name="logos_liked" rows="3" placeholder="URL or Brand Name: What do you like about it?"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="logos-disliked">Logos You Dislike</label>
+          <span class="hint">Share links or names of 2–3 logos you dislike and why.</span>
+          <textarea id="logos-disliked" name="logos_disliked" rows="3" placeholder="URL or Brand Name: What don't you like about it?"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="competitors">Competitors</label>
+          <span class="hint">Who are 2–3 of your main competitors, and how do you want to stand out?</span>
+          <textarea id="competitors" name="competitors" rows="3"></textarea>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section>
+        <h2>4. Technical & Functional Needs</h2>
+
+        <div class="form-group">
+          <label>Primary Applications</label>
+          <span class="hint">Select all places where this logo will be displayed:</span>
+          <div class="checkbox-grid">
+            <label class="option-label"><input type="checkbox" name="apps[]" value="website"> Website & Mobile</label>
+            <label class="option-label"><input type="checkbox" name="apps[]" value="social"> Social Media</label>
+            <label class="option-label"><input type="checkbox" name="apps[]" value="print"> Print Collateral</label>
+            <label class="option-label"><input type="checkbox" name="apps[]" value="packaging"> Packaging</label>
+            <label class="option-label"><input type="checkbox" name="apps[]" value="apparel"> Apparel / Embroidery</label>
+            <label class="option-label"><input type="checkbox" name="apps[]" value="signage"> Signage</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Logo Format</label>
+          <div class="radio-stack">
+            <label class="option-label"><input type="radio" name="format" value="wordmark"> Wordmark (Text-based)</label>
+            <label class="option-label"><input type="radio" name="format" value="symbol"> Brandmark / Symbol (Icon only)</label>
+            <label class="option-label"><input type="radio" name="format" value="combination"> Combination Mark (Icon + Text)</label>
+            <label class="option-label"><input type="radio" name="format" value="system"> Flexible System (Primary + Sub-marks)</label>
+            <label class="option-label"><input type="radio" name="format" value="designer_recommendation" checked> Open to designer recommendation</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="constraints">Color Preferences & Constraints</label>
+          <span class="hint">List any required brand colors or elements/colors that must NOT be used.</span>
+          <textarea id="constraints" name="constraints" rows="2" placeholder="e.g., Must use primary navy (#001F3F). Avoid red or yellow."></textarea>
+        </div>
+      </section>
+
+      <button type="submit">Submit Intake Form</button>
+    </form>
+  </div>
+
+</body>
+</html>
