@@ -236,15 +236,31 @@
 
     .option-label {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       font-weight: normal;
       font-size: 0.9rem;
       cursor: pointer;
-      padding: 8px 12px;
+      padding: 12px 12px;
       border: 1px solid var(--border);
       border-radius: calc(var(--radius) - 2px);
       transition: background-color 0.15s;
+    }
+
+    .option-label div {
+      flex: 1;
+    }
+
+    .option-label strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--black);
+    }
+
+    .option-label .hint {
+      margin: 0;
+      display: block;
+      font-size: 0.85rem;
     }
 
     .option-label:hover {
@@ -473,6 +489,7 @@
             <span>Classic</span>
             <span>Modern</span>
           </div>
+          <span class="hint" style="display: block; margin-bottom: 12px;">Classic: Timeless, elegant, traditional. Modern: Contemporary, trendy, current.</span>
           <div class="slider-container">
             <input type="range" id="slider-1" name="style_classic_modern" min="1" max="5" value="3" oninput="document.getElementById('val-1').innerText = this.value">
             <span class="slider-value" id="val-1">3</span>
@@ -484,6 +501,7 @@
             <span>Playful</span>
             <span>Serious</span>
           </div>
+          <span class="hint" style="display: block; margin-bottom: 12px;">Playful: Fun, lighthearted, approachable. Serious: Professional, corporate, authoritative.</span>
           <div class="slider-container">
             <input type="range" id="slider-2" name="style_playful_serious" min="1" max="5" value="3" oninput="document.getElementById('val-2').innerText = this.value">
             <span class="slider-value" id="val-2">3</span>
@@ -495,6 +513,7 @@
             <span>Minimalist</span>
             <span>Detailed</span>
           </div>
+          <span class="hint" style="display: block; margin-bottom: 12px;">Minimalist: Simple, clean, few elements. Detailed: Complex, ornate, lots of decorations.</span>
           <div class="slider-container">
             <input type="range" id="slider-3" name="style_minimal_detailed" min="1" max="5" value="3" oninput="document.getElementById('val-3').innerText = this.value">
             <span class="slider-value" id="val-3">3</span>
@@ -506,6 +525,7 @@
             <span>Casual</span>
             <span>Luxurious</span>
           </div>
+          <span class="hint" style="display: block; margin-bottom: 12px;">Casual: Friendly, approachable, everyday. Luxurious: Premium, sophisticated, high-end.</span>
           <div class="slider-container">
             <input type="range" id="slider-4" name="style_casual_luxurious" min="1" max="5" value="3" oninput="document.getElementById('val-4').innerText = this.value">
             <span class="slider-value" id="val-4">3</span>
@@ -517,6 +537,7 @@
             <span>Subtle</span>
             <span>Bold</span>
           </div>
+          <span class="hint" style="display: block; margin-bottom: 12px;">Subtle: Understated, refined, quiet. Bold: Eye-catching, powerful, stands out immediately.</span>
           <div class="slider-container">
             <input type="range" id="slider-5" name="style_subtle_bold" min="1" max="5" value="3" oninput="document.getElementById('val-5').innerText = this.value">
             <span class="slider-value" id="val-5">3</span>
@@ -566,12 +587,43 @@
 
         <div class="form-group">
           <label>Logo Format Preference</label>
+          <span class="hint">What's your vision?</span>
           <div class="radio-stack">
-            <label class="option-label"><input type="radio" name="format" value="wordmark"> Wordmark (Text-based)</label>
-            <label class="option-label"><input type="radio" name="format" value="symbol"> Brandmark / Symbol (Icon only)</label>
-            <label class="option-label"><input type="radio" name="format" value="combination"> Combination Mark (Icon + Text)</label>
-            <label class="option-label"><input type="radio" name="format" value="system"> Flexible System (Primary + Sub-marks)</label>
-            <label class="option-label"><input type="radio" name="format" value="designer_recommendation" checked> Let's Explore Together</label>
+            <label class="option-label">
+              <input type="radio" name="format" value="wordmark"> 
+              <div>
+                <strong>Wordmark</strong><br>
+                <span class="hint">Your brand name styled beautifully. Examples: Google, Coca-Cola, Netflix</span>
+              </div>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="format" value="symbol"> 
+              <div>
+                <strong>Symbol/Icon Only</strong><br>
+                <span class="hint">Just a mark or icon people recognize instantly. Examples: Apple, Nike Swoosh, Twitter Bird</span>
+              </div>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="format" value="combination"> 
+              <div>
+                <strong>Combination Mark</strong><br>
+                <span class="hint">Icon + text together as one logo. Examples: Mastercard, Amazon, Slack</span>
+              </div>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="format" value="system"> 
+              <div>
+                <strong>Flexible System</strong><br>
+                <span class="hint">Multiple versions: full logo for big spaces, icon only for small spaces (like social profiles)</span>
+              </div>
+            </label>
+            <label class="option-label" style="border: 2px solid var(--accent);">
+              <input type="radio" name="format" value="designer_recommendation" checked> 
+              <div>
+                <strong>Let's Explore Together (Recommended)</strong><br>
+                <span class="hint">Not sure? I'll guide you. I'll recommend what works best for your brand and industry</span>
+              </div>
+            </label>
           </div>
         </div>
 
@@ -582,7 +634,7 @@
         </div>
       </section>
 
-      <button type="submit">✨ Send My Vision</button>
+      <button type="submit">Send My Vision</button>
     </form>
   </div>
 
@@ -593,7 +645,7 @@
   <!-- Success Modal -->
   <div class="success-modal" id="successModal">
     <div class="success-content">
-      <div class="success-icon">✨</div>
+      <div class="success-icon">→</div>
       <h2>Vision Received!</h2>
       <p>Thank you for sharing your creative vision. I can't wait to bring your brand to life. You'll hear from me soon.</p>
       <div class="success-buttons">
